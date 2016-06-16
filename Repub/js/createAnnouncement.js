@@ -36,8 +36,8 @@
 
     var rentTrue = document.createElement('input');
     rentTrue.type = 'radio';
-    rentTrue.name = 'quarto-' + count + '-alugado';
-    rentTrue.id = 'quarto-' + count + '-alugado';
+    rentTrue.name = 'quarto-' + count + '-alugado-true';
+    rentTrue.id = 'quarto-' + count + '-alugado-true';
     rentTrue.value = 'true';
 
     var spanTrue = document.createElement('span');
@@ -46,8 +46,8 @@
 
     var rentFalse = document.createElement('input');
     rentFalse.type = 'radio';
-    rentFalse.name = 'quarto-' + count + '-alugado';
-    rentFalse.id = 'quarto-' + count + '-alugado';
+    rentFalse.name = 'quarto-' + count + '-alugado-false';
+    rentFalse.id = 'quarto-' + count + '-alugado-false';
     rentFalse.value = 'false';
     rentFalse.checked = 'checked';
 

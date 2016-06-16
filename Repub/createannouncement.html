@@ -62,8 +62,8 @@
                         <label class="garagem-input">
                             Possui Garagem?
                         </label>
-                        <input data-toggle="tooltip" title="Possui garagem" type="radio" name="garagem" id="garagem" value="true" /> Sim
-                        <input data-toggle="tooltip" title="Não possui garagem" type="radio" name="garagem" id="garagem" values="false" checked /> Não
+                        <input data-toggle="tooltip" title="Possui garagem" type="radio" name="garagem-true" id="garagem-true" value="true" /> Sim
+                        <input data-toggle="tooltip" title="Não possui garagem" type="radio" name="garagem-false" id="garagem-false" value="false" checked /> Não
                     </div>
                     <div>
                         <input data-toggle="tooltip" title="Valor médio das contas da república" class="announcement-input-details" type="number" min="0" required="required" name="valorContas" id="valorContas" placeholder="Valor médio das contas" />
@@ -81,7 +81,7 @@
                 </legend>
                 <div>
                     <label class="images-input">Imagem capa</label>
-                    <input data-toggle="tooltip" title="Imagem da capa do anúncio" class="images-input-field default-button" type="file" name="anuncio-imagem1" id="anuncio-imagem0" />
+                    <input data-toggle="tooltip" title="Imagem da capa do anúncio" class="images-input-field default-button" required="required" type="file" name="anuncio-imagem1" id="anuncio-imagem0" />
                     <label class="images-input">Imagem 2</label>
                     <input data-toggle="tooltip" title="Image 02" class="images-input-field default-button" type="file" name="anuncio-imagem2" id="anuncio-imagem1" />
                     <label class="images-input">Imagem 3</label>
@@ -107,11 +107,11 @@
                             <label class="garagem-input">
                                 Quarto está alugado?
                             </label>
-                            <input data-toggle="tooltip" title="Quarto já alugado" type="radio" name="quarto-0-alugado" id="quarto-0-alugado" value="true" />
+                            <input data-toggle="tooltip" title="Quarto já alugado" type="radio" name="quarto-0-alugado-true" id="quarto-0-alugado-true" value="true" />
                             <span>
                                 Sim
                             </span>
-                            <input data-toggle="tooltip" title="Quarto não alugado" type="radio" name="quarto-0-alugado" id="quarto-0-alugado" values="false" checked />
+                            <input data-toggle="tooltip" title="Quarto não alugado" type="radio" name="quarto-0-alugado-false" id="quarto-0-alugado-false" values="false" checked />
                             <span>
                                 Não
                             </span>

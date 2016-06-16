@@ -50,7 +50,9 @@ function addBanner() {
     banner.appendChild(slogan);
     banner.appendChild(menu);
 
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+
 }
