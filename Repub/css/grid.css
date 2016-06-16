@@ -1,0 +1,92 @@
+﻿.anuncio {
+    /*background-color:blue;*/
+    border: solid 0px gray;
+    border-radius: 0.1%;
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    padding: 0px;
+    color: white;
+}
+
+.anuncio-img {
+    height: 300px;
+    border-radius: 0.1%;
+    width: 300px;
+    background-size: cover;
+    z-index: 0;
+}
+
+.anuncio-title {
+    padding: 5px;
+    position: absolute;
+    top: 230px;
+    border-radius: 2%;
+    background-color: rgba(0, 0, 0, 0.44);
+    height: 70px;
+    width: 300px;
+    box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.36);
+    z-index: 10;
+}
+
+.anuncio-title-text {
+    font-family: 'Segoe UI Light';
+    font-size: 15px;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    /*white-space:nowrap;*/
+    /*cursor:*/
+}
+
+    .anuncio-title-text:hover {
+        color: white;
+        text-decoration: underline;
+    }
+
+.anuncio:hover {
+    border-color: #40a0ea;
+    box-shadow: 0px 0px 3px 0px #40a0ea;
+    color: #40a0ea;
+}
+
+.anuncio-edit {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.44);
+    top: 15px;
+    right: 10px;
+    border: solid gray;
+    border-top: 1px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-left: 1px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 3px 0 0px 6px;
+}
+
+    .anuncio-edit:hover {
+        box-shadow: 0px 0px 5px 0px #40a0ea;
+    }
+
+.anuncio-can {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.44);
+    top: 15px;
+    right: 47px;
+    border: solid gray;
+    border-top: 1px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-left: 1px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 3px 0 2px 5px;
+}
+
+    .anuncio-can:hover {
+        box-shadow: 0px 0px 5px 0px #40a0ea;
+    }

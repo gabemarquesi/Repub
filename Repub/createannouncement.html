@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Repub - Criar Anúncio
+    </title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="css/grid.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="js/requestHandler.js"></script>
+    <script src="js/banner.js"></script>
+    <script src="js/createAnnouncement.js"></script>
+</head>
+<body onload="addBanner();">
+    <div id="content" name="content">
+        <div>
+            <h1 class="title-big">
+                Crie seu Anúncio
+            </h1>
+        </div>
+        <form>
+            <fieldset class="fieldset">
+                <legend class="banner-title-small">
+                    Informações Básicas
+                </legend>
+                <div>
+                    <input class="announcement-input" type="text" required="required" name="titulo" id="titulo" placeholder="Título" />
+                </div>
+                <div>
+                    <input class="announcement-input" type="text" name="nome" id="nome" placeholder="Nome da República" />
+                </div>
+                <div>
+                    <input class="announcement-input" type="tel" name="telefone" id="telefone" placeholder="Tel/Cel" />
+                </div>
+                <div>
+                    <textarea class="announcement-input" required="required" name="descricao" id="descricao" placeholder="Descrição"></textarea>
+                </div>
+                <fieldset class="fieldset">
+                    <legend class="banner-title-small">
+                        Endereço
+                    </legend>
+                    <div>
+                        <input class="announcement-input" type="text" required="required" name="endereco" id="endereco" placeholder="Rua/Número" />
+                    </div>
+                    <div>
+                        <input class="announcement-input" type="text" required="required" name="bairro" id="bairro" placeholder="Bairro" />
+                    </div>
+                    <div>
+                        <input class="announcement-input" type="text" required="required" name="cidade" id="cidade" placeholder="Cidade" />
+                    </div>
+                    <div>
+                        <input class="announcement-input" type="text" required="required" name="estado" id="estado" placeholder="Estado" />
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend class="banner-title-small">
+                        Detalhes
+                    </legend>
+                    <div>
+                        <label class="garagem-input">
+                            Possui Garagem?
+                        </label>
+                        <input type="radio" name="garagem" id="garagem" value="true" /> Sim
+                        <input type="radio" name="garagem" id="garagem" values="false" checked /> Não
+                    </div>
+                    <div>
+                        <input class="announcement-input-details" type="number" min="0" required="required" name="valorContas" id="valorContas" placeholder="Valor médio das contas" />
+                        <label style="color:gray; font-family: 'Segoe UI Light';">Reais</label>
+                    </div>
+                    <div>
+                        <input class="announcement-input-details" type="number" min="0" name="internet" id="internet" placeholder="Internet" />
+                        <label style="color:gray; font-family: 'Segoe UI Light';">Mbp/s</label>
+                    </div>
+                </fieldset>
+            </fieldset>
+            <fieldset>
+                <legend class="banner-title-small">
+                    Fotos
+                </legend>
+                <div>
+                    <label class="images-input">Imagem capa</label>
+                    <input class="images-input-field default-button" type="file" name="anuncio-imagem1" id="anuncio-imagem0" />
+                    <label class="images-input">Imagem 2</label>
+                    <input class="images-input-field default-button" type="file" name="anuncio-imagem2" id="anuncio-imagem1" />
+                    <label class="images-input">Imagem 3</label>
+                    <input class="images-input-field default-button" type="file" name="anuncio-imagem3" id="anuncio-imagem2" />
+                    <label class="images-input">Imagem 4</label>
+                    <input class="images-input-field default-button" type="file" name="anuncio-imagem4" id="anuncio-imagem3" />
+                    <label class="images-input">Imagem 5</label>
+                    <input class="images-input-field default-button" type="file" name="anuncio-imagem5" id="anuncio-imagem4" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend class="banner-title-small">
+                    Quartos
+                </legend>
+                <div id="quartos" name="quartos">
+                    <div name="quarto">
+                        <input class="announcement-input-details" type="number" min="0" required="required" placeholder="Valor" name="quarto-0-valor" id="quarto-0-valor" />
+                        <label style="color:gray; font-family: 'Segoe UI Light';">Reais</label>
+                        <div>
+                            <textarea class="announcement-input" required="required" name="quarto-0-descricao" id="quarto-0-descricao" placeholder="Descrição"></textarea>
+                        </div>
+                        <div>
+                            <label class="garagem-input">
+                                Quarto está alugado?
+                            </label>
+                            <input type="radio" name="quarto-0-alugado" id="quarto-0-alugado" value="true" />
+                            <span>
+                                Sim
+                            </span>
+                            <input type="radio" name="quarto-0-alugado" id="quarto-0-alugado" values="false" checked />
+                            <span>
+                                Não
+                            </span>
+                            <div>
+                                <label class="images-input">Imagem 1</label>
+                                <input class="images-input-field default-button" type="file" name="quarto-0-imagem1" id="quarto-0-imagem0" />
+                                <label class="images-input">Imagem 2</label>
+                                <input class="images-input-field default-button" type="file" name="quarto-0-imagem2" id="quarto-0-imagem1" />
+                                <label class="images-input">Imagem 3</label>
+                                <input class="images-input-field default-button" type="file" name="quarto-0-imagem3" id="quarto-0-imagem2" />
+                            </div>
+                            <div class="room-border">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="default-button announcement-input-details" type="button" onclick="addRoom();">
+                        Criar um novo quarto
+                    </button>
+                </div>
+            </fieldset>
+            <fieldset><legend> </legend></fieldset>
+            <div style="" >
+                 <button style="float:right; margin:20px; height:45px" class="default-button" type="submit"> Salvar Anúncio </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

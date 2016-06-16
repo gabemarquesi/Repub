@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Repub - Sign Up
+    </title>
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="css/grid.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="js/requestHandler.js"></script>
+    <script src="js/banner.js"></script>
+</head>
+<body onload="addBanner();">
+    
+    <div style="height:120px; width:100%">
+    </div>
+    <div id="content" style=" padding:0px 120px 0px 120px">
+        <div id="signin-form" align="center">
+            <div class="sign-up-div" id="signup-left" style="float:left">
+                <h1 class="title-medium">Cadastre-se</h1>
+                <form action="/" method="post">
+                    <div>
+                        <input id="nome" name="nome" class="sign-up-input" type="text" placeholder="Nome completo" />
+                        <br />
+                        <br />
+                        <input id="signupEmail" name="email" class="sign-up-input" type="email" placeholder="email@repub.com" />
+                        <br />
+                        <br />
+                        <input id="signupSenha" name="senha" class="sign-up-input" type="password" placeholder="●●●●●●●" />
+                        <br />
+                        <br />
+                        <!--TODO: Alinhar os botões ao bottom-->
+                        <div>
+                            <input value="Cadastrar" type="submit" class="default-button" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sign-up-div" id="login-right" style="float:right">
+                <h1 class="title-medium">Entre</h1>
+                <form action="/" method="post">
+                    <div>
+                        <input id="loginEmail" name="email" class="sign-up-input" type="email" placeholder="email@repub.com" />
+                        <br />
+                        <br />
+                        <input id="loginSenha" class="sign-up-input" type="password" placeholder="●●●●●●●" />
+                        <br />
+                        <br />
+                        <div>
+                            <input value="Entrar" type="submit" class="default-button" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br style="clear:both;" />
+        </div>
+    </div>
+</body>
+</html>
