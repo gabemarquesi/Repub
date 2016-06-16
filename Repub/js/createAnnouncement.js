@@ -1,10 +1,10 @@
 ﻿function addRoom() {
-    var count = document.getElementsByName('quarto').length;
+    var count = document.getElementsByClassName('quarto-div').length;
 
     var rooms = document.getElementById('quartos');
 
     var roomDiv = document.createElement('div');
-    roomDiv.name = 'quarto';
+    roomDiv.className = 'quarto-div';
 
     var billValue = document.createElement('input');
     billValue.className = 'announcement-input-details';

@@ -49,4 +49,8 @@ function addBanner() {
     banner.appendChild(title);
     banner.appendChild(slogan);
     banner.appendChild(menu);
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 }
