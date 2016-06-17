@@ -2,7 +2,6 @@
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {        
         if (xmlHttp.readyState == 4) {
-            alert(xmlHttp.status);
            callback(xmlHttp.responseText);
         }
     }

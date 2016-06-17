@@ -1,5 +1,5 @@
 ﻿function fillForm(anuncio) {
-    anuncio = httpGet("https://www.google.com/");
+    anuncio = httpGet("file:///C:/Users/User/Desktop/BCC/anuncioteste.json");
     
     alert(anuncio.titulo);
 
