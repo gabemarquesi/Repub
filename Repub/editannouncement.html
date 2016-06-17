@@ -11,8 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
     <script src="js/banner.js"></script>
+    <script src="js/editAnnouncement.js"></script>
 </head>
-<body onload="addBanner();">
+<body onload="addBanner(); httpGetAsync('https://www.google.com/',
+    function (response) { alert(response.length); fillForm(JSON.parse(response)); });">
     <div id="content" name="content">
         <div>
             <h1 class="title-big">

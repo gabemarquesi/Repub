@@ -4,6 +4,10 @@
     };
 }
 
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 function addBanner() {
     var body = document.getElementsByTagName('body')[0];
 
@@ -49,10 +53,4 @@ function addBanner() {
     banner.appendChild(title);
     banner.appendChild(slogan);
     banner.appendChild(menu);
-
-
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
 }
