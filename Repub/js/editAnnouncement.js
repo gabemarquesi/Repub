@@ -1,8 +1,4 @@
-﻿function fillForm(anuncio) {
-    anuncio = httpGet("https://www.google.com/");
-    
-    alert(anuncio.titulo);
-
+﻿function fillForm(anuncio) {   
     var titulo = document.getElementById('titulo');
     titulo.value = anuncio.titulo;
 

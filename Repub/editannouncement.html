@@ -13,8 +13,8 @@
     <script src="js/banner.js"></script>
     <script src="js/editAnnouncement.js"></script>
 </head>
-<body onload="addBanner(); httpGetAsync('https://www.google.com/',
-    function (response) { alert(response.length); fillForm(JSON.parse(response)); });">
+<body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
+    function (response) { alert(response); fillForm(JSON.parse(response)); });">
     <div id="content" name="content">
         <div>
             <h1 class="title-big">
