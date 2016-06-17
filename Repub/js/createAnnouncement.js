@@ -12,8 +12,8 @@
     billValue.min = '0';
     billValue.required = 'required';
     billValue.placeholder = 'Valor';
-    billValue.name ='quarto-' + count + '-valor';
-    billValue.id = 'quarto-' + count + '-valor';
+    billValue.name ='quarto-valor['+count+']';
+    billValue.id = 'quarto-valor[' + count + ']';
 
     var billValueLabel = document.createElement('label');
     billValueLabel.style = 'color:gray; font-family: "Segoe UI Light";';
@@ -25,8 +25,8 @@
     descriptionTextarea.className = 'announcement-input';
     descriptionTextarea.required = 'required';
     descriptionTextarea.placeholder = 'Descrição';
-    descriptionTextarea.name = 'quarto-' + count+'-descricao';
-    descriptionTextarea.id = 'quarto-' + count + '-descricao';
+    descriptionTextarea.name = 'quarto-descricao[' + count + ']';
+    descriptionTextarea.id = 'quarto-descricao[' + count + ']';
 
     var rentDiv = document.createElement('div');
 
@@ -36,8 +36,8 @@
 
     var rentTrue = document.createElement('input');
     rentTrue.type = 'radio';
-    rentTrue.name = 'quarto-' + count + '-alugado-true';
-    rentTrue.id = 'quarto-' + count + '-alugado-true';
+    rentTrue.name = 'quarto-alugado-true[' + count + ']';
+    rentTrue.id = 'quarto-alugado-true[' + count + ']';
     rentTrue.value = 'true';
 
     var spanTrue = document.createElement('span');
@@ -46,8 +46,8 @@
 
     var rentFalse = document.createElement('input');
     rentFalse.type = 'radio';
-    rentFalse.name = 'quarto-' + count + '-alugado-false';
-    rentFalse.id = 'quarto-' + count + '-alugado-false';
+    rentFalse.name = 'quarto-alugado-false[' + count + ']';
+    rentFalse.id = 'quarto-alugado-false[' + count + ']';
     rentFalse.value = 'false';
     rentFalse.checked = 'checked';
 
@@ -64,8 +64,8 @@
     var imageInput1 = document.createElement('input');
     imageInput1.className = 'images-input-field default-button';
     imageInput1.type = 'file';
-    imageInput1.name = 'quarto-' + count + '-imagem0';
-    imageInput1.id = 'quarto-' + count + '-imagem0';
+    imageInput1.name = 'quarto-' + count + '-imagem[0]';
+    imageInput1.id = 'quarto-' + count + '-imagem[0]';
 
     var imageLabel2 = document.createElement('label');
     imageLabel2.className = 'images-input';
@@ -74,8 +74,8 @@
     var imageInput2 = document.createElement('input');
     imageInput2.className = 'images-input-field default-button';
     imageInput2.type = 'file';
-    imageInput2.name = 'quarto-' + count + '-imagem1';
-    imageInput2.id = 'quarto-' + count + '-imagem1';
+    imageInput2.name = 'quarto-' + count + '-imagem[1]';
+    imageInput2.id = 'quarto-' + count + '-imagem[1]';
 
     var imageLabel3 = document.createElement('label');
     imageLabel3.className = 'images-input';
@@ -84,8 +84,8 @@
     var imageInput3 = document.createElement('input');
     imageInput3.className = 'images-input-field default-button';
     imageInput3.type = 'file';
-    imageInput3.name = 'quarto-' + count + '-imagem2';
-    imageInput3.id = 'quarto-' + count + '-imagem2';
+    imageInput3.name = 'quarto-' + count + '-imagem[2]';
+    imageInput3.id = 'quarto-' + count + '-imagem[2]';
 
     var borderDiv = document.createElement('div');
     borderDiv.className = 'room-border';
