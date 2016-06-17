@@ -1,8 +1,4 @@
-﻿function fillForm(anuncio) {
-    anuncio = httpGet("file:///C:/Users/User/Desktop/BCC/anuncioteste.json");
-    
-    alert(anuncio.titulo);
-
+﻿function fillForm(anuncio) {   
     var titulo = document.getElementById('titulo');
     titulo.value = anuncio.titulo;
 
