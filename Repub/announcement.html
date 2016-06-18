@@ -18,47 +18,48 @@
 <body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
     function (response) { alert(response); showAnnouncement(JSON.parse(response)); });" style="background-color:white;">
     <div id="content">
-        <div style="display:flex;">
-            <div class="imagem-anuncio-capa" name="imagem-capa" id="imagem-capa">
-            </div>
-            <div style="flex:2.3;">
+        <div>
+            <div style="">
                 <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio">
                     Casa com garagem perto da unifal
                 </h1>
-                <div id="anuncio-thumbnails-div" style="height:80px; margin-top:90px; background-color:blue;">
-                </div>
+            </div>
+            <div id="anuncio-thumbnails-div" style="height:80px; background-color:blue;">
+            </div>
+            <div class="imagem-anuncio-capa" name="imagem-capa" id="imagem-capa">
             </div>
         </div>
 
-
         <fieldset class="fieldset">
-            <legend class="title-small">
+            <legend class="title-medium">
                 Dados da República
             </legend>
             <div style="">
-                <h2 style="" class="descricao-anuncio" name="descricao-anuncio" id="desctricao-anuncio">
+                <p style="" class="descricao-anuncio" name="descricao-anuncio" id="desctricao-anuncio">
                     To me the biggest difference between padding and margin is that margins auto-collapse, and padding doesn't. Consider two elements next to each other each with padding of 1em. This padding is considered to be part of the element, and is always preserved. So you will end up with the content of the first element, followed by the padding of the first element, followed by the padding of the second, followed by the content of the second element. Thus content of the two elements will end up being 2em apart.
 
                     Now replace that padding with 1em margin. Margins are considered to be outside of the element, and margins of adjacent items will overlap. So in this example you will end up with the content of the first element followed by 1em of combined margin followed by the content of the second element. So the content of the two elements is only 1em apart.
-                </h2>
+                </p>
             </div>
-            <div id="nome-anuncio">
-                nome
+            <div class ="title-medium nome-rep" id="nome-anuncio">
+                República URCA
             </div>
-            <div id="endereco-anuncio">
-                endereço
-            </div>
-            <div id="telefone-anuncio">
-                telefone
-            </div>
-            <div id="valormediocontas-anuncio">
-                valorMedio
-            </div>
-            <div id="internet-anuncio">
-                internet
-            </div>
-            <div id="garagem-anuncio">
-                garagem
+            <div class="descricao-anuncio">
+                <p id="endereco-anuncio">
+                    endereço
+                </p>
+                <p id="telefone-anuncio">
+                    telefone
+                </p>
+                <p id="valormediocontas-anuncio">
+                    valorMedio
+                </p>
+                <p id="internet-anuncio">
+                    internet
+                </p>
+                <p id="garagem-anuncio">
+                    garagem
+                </p>
             </div>
         </fieldset>
         <fieldset class="fieldset">
