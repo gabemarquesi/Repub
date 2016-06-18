@@ -1,4 +1,5 @@
 ﻿function showAnnouncement(anuncio) {
+    anuncio
     var imgCapaSpan = document.getElementById('imagem-capa');
 
     var imgCapa = document.createElement('img');
@@ -10,8 +11,29 @@
     var descricao = document.getElementById(descricao - anuncio);
     descricao.innerHTML = anuncio.descricao;
 
-    var imgPequenas = document.getElementById('imagens-pequenas');
-    // for para as imagens pequenas
+    //var imgPequenas = document.getElementById('anuncio-thumbnails-div');
+    //imgPequenas.style.display = 'flex';
+
+    for (i = 0; i < anuncio.imagens.length; i++) {
+        var imgDiv = document.createElement('div');
+        imgDiv.id = 'anuncio-imagem-thumbnail-div[' + i + ']';
+        imgDiv.name = 'anuncio-imagem-thumbnail-div[' + i + ']';
+        imgDiv.className = 'images-input-field';
+
+        var img = document.createElement('div');
+        img.className = "image-preview";
+        img.id = 'anuncio-imagem-preview[' + i + ']';
+        img.name = 'anuncio-imagem-preview[' + i + ']';
+        img.className = 'editar-anuncio-imagem-thumbnail';
+        img.style.backgroundImage = 'url(' + anuncio.imagens[i] + ')';
+
+        var imgPequenas = document.getElementById('anuncio-thumbnails-div');
+        imgPequenas.style.display = 'flex';
+
+        imgDiv.appendChild(img);
+        imgPequenas.appendChild(imgDiv);
+
+        };
 
     var nomeDiv = document.getElementById('nome-anuncio');
     nomeDiv.innerHTML = anuncio.nome;
