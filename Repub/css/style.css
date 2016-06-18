@@ -202,3 +202,31 @@ body {
     margin-left: 60px;
     margin-right: 60px;
 }
+
+.editar-anuncio-imagem-thumbnail {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 160px;
+    background-position: center;
+    position: relative;
+    background-color: #f6f6f6;
+}
+
+.editar-anuncio-imagem-thumbnail-removeicon {
+    background-image: url('../images/close-browser.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    background-color: #40a0ea;
+}
+
+    .editar-anuncio-imagem-thumbnail-removeicon:hover {
+        box-shadow:0 0 1px 1px rgba(0, 0, 0, 0.21);        
+    }

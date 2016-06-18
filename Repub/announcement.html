@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="css/grid.css" rel="stylesheet" />
+    <link href="css/anuncio.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
     <script src="js/annoucementsGrid.js"></script>
@@ -15,24 +16,28 @@
 </head>
 <body onload="addBanner();" style="background-color:white;">
     <div id="content">
-        <span style="float:left" name="imagem-capa" id="imagem-capa">
-            <img src="images/indice0.jpg" />
-        </span>
-        <div>
-            <h1 style="" class="title-big" name="titulo-anuncio" id="titulo-anuncio">
-                Titulo
-            </h1>
-            <h2 style="" class="title-small" name="descricao-anuncio" id="desctricao-anuncio">
-                Nome
-            </h2>
+        <div style="display:flex;">
+            <div class="imagem-anuncio-capa" name="imagem-capa" id="imagem-capa">
+            </div>
+            <div style="flex:2.3; ">
+                <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio">
+                    Casa com garagem perto da unifal
+                </h1>
+            </div>        <div id="anuncio-thumbnails-div" style="height:80px; background-color:blue;">
         </div>
-        <span id="imagens-pequenas">
-        </span>
+        </div>
+
         <fieldset class="fieldset">
             <legend class="title-small">
                 Dados da República
             </legend>
+            <div style="">
+                <h2 style="" class="descricao-anuncio" name="descricao-anuncio" id="desctricao-anuncio">
+                    To me the biggest difference between padding and margin is that margins auto-collapse, and padding doesn't. Consider two elements next to each other each with padding of 1em. This padding is considered to be part of the element, and is always preserved. So you will end up with the content of the first element, followed by the padding of the first element, followed by the padding of the second, followed by the content of the second element. Thus content of the two elements will end up being 2em apart.
 
+                    Now replace that padding with 1em margin. Margins are considered to be outside of the element, and margins of adjacent items will overlap. So in this example you will end up with the content of the first element followed by 1em of combined margin followed by the content of the second element. So the content of the two elements is only 1em apart.
+                </h2>
+            </div>
             <div id="nome-anuncio">
                 nome
             </div>
