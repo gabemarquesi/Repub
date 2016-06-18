@@ -17,7 +17,7 @@
 </head>
 <body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
     function (response) { alert(response); showAnnouncement(JSON.parse(response)); });" style="background-color:white;">
-    <div id="content">
+    <div id="content" name="content">
         <div>
             <div style="">
                 <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio">
@@ -40,24 +40,23 @@
 
                     Now replace that padding with 1em margin. Margins are considered to be outside of the element, and margins of adjacent items will overlap. So in this example you will end up with the content of the first element followed by 1em of combined margin followed by the content of the second element. So the content of the two elements is only 1em apart.
                 </p>
-            </div>
-            <div class ="title-medium nome-rep" id="nome-anuncio">
-                República URCA
-            </div>
-            <div class="descricao-anuncio">
-                <p id="endereco-anuncio">
+
+                <div class="title-medium nome-rep" id="nome-anuncio">
+                    República URCA
+                </div>
+                <p class="descricao-anuncio" id="endereco-anuncio">
                     endereço
                 </p>
-                <p id="telefone-anuncio">
+                <p class="descricao-anuncio" id="telefone-anuncio">
                     telefone
                 </p>
-                <p id="valormediocontas-anuncio">
+                <p class="descricao-anuncio" id="valormediocontas-anuncio">
                     valorMedio
                 </p>
-                <p id="internet-anuncio">
+                <p class="descricao-anuncio" id="internet-anuncio">
                     internet
                 </p>
-                <p id="garagem-anuncio">
+                <p class="descricao-anuncio" id="garagem-anuncio">
                     garagem
                 </p>
             </div>
