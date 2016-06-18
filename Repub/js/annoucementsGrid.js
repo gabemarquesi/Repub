@@ -33,9 +33,9 @@ function createGrids(anuncios) {
 
         var j = 0;
 
-        for (j = 0; j < 3 && i < anuncios.length; j++, i++) {
+        for (j = 0; j < 2 && i < anuncios.length; j++, i++) {
             var anuncioDiv = document.createElement('div');
-            anuncioDiv.className = "col-md-6 col-lg-4 col-xs-12 col-sm-12 anuncio";
+            anuncioDiv.className = "col-md-6 col-lg-6 col-xs-6 col-sm-6 anuncio";
             anuncioDiv.id = 'anuncio-' + anuncios[i].id;
 
             var editLink = document.createElement('a');
