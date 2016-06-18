@@ -53,7 +53,9 @@ body {
 }
 
 .sign-up-input {
-    width: 300px;
+    width: 350px;
+    height: 30px;
+    margin-bottom: 12px;
 }
 
 .default-button {
@@ -72,13 +74,22 @@ body {
     }
 
 .sign-up-div {
-    /*border: 1px solid #ebedef;*/
-    /*border-radius: 0.8%;*/
-    /*box-shadow: 0 3px 1px 0px rgba(0, 0, 0, 0.36);*/
     width: 500px;
-    min-height: 80vh;
     padding-bottom: 20px;
     background-color: white;
+}
+
+.sign-in-div {
+    width: 500px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+.sign-up-title {
+    font-family: 'Segoe UI Light';
+    font-size: 30px;
+    padding-bottom: 15px;
+    color: #40a0ea;
 }
 
 .banner {
@@ -228,5 +239,5 @@ body {
 }
 
     .editar-anuncio-imagem-thumbnail-removeicon:hover {
-        box-shadow:0 0 1px 1px rgba(0, 0, 0, 0.21);        
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.21);
     }
