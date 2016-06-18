@@ -1,5 +1,5 @@
 ﻿function showAnnouncement(anuncio) {
-    anuncio
+    
     var imgCapaSpan = document.getElementById('imagem-capa');
 
     var imgCapa = document.createElement('img');
@@ -7,14 +7,15 @@
 
     var titulo = document.getElementById('titulo-anuncio');
     titulo.innerHTML = anuncio.titulo;
-
-    var descricao = document.getElementById(descricao - anuncio);
+    
+    var descricao = document.getElementById('desctricao-anuncio');
     descricao.innerHTML = anuncio.descricao;
 
     //var imgPequenas = document.getElementById('anuncio-thumbnails-div');
     //imgPequenas.style.display = 'flex';
 
     for (i = 0; i < anuncio.imagens.length; i++) {
+        alert(anuncio.imagens[i]);
         var imgDiv = document.createElement('div');
         imgDiv.id = 'anuncio-imagem-thumbnail-div[' + i + ']';
         imgDiv.name = 'anuncio-imagem-thumbnail-div[' + i + ']';
