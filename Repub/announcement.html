@@ -12,20 +12,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
     <script src="js/annoucementsGrid.js"></script>
+    <script src="js//announcement.js"></script>
     <script src="js/banner.js"></script>
 </head>
-<body onload="addBanner();" style="background-color:white;">
+<body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
+    function (response) { alert(response); showAnnouncement(JSON.parse(response)); });" style="background-color:white;">
     <div id="content">
         <div style="display:flex;">
             <div class="imagem-anuncio-capa" name="imagem-capa" id="imagem-capa">
             </div>
-            <div style="flex:2.3; ">
+            <div style="flex:2.3;">
                 <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio">
                     Casa com garagem perto da unifal
                 </h1>
-            </div>        <div id="anuncio-thumbnails-div" style="height:80px; background-color:blue;">
+                <div id="anuncio-thumbnails-div" style="height:80px; margin-top:90px; background-color:blue;">
+                </div>
+            </div>
         </div>
-        </div>
+
 
         <fieldset class="fieldset">
             <legend class="title-small">
