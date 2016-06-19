@@ -1,5 +1,5 @@
 ﻿function showAnnouncement(anuncio) {
-    
+
     var imgCapaSpan = document.getElementById('imagem-capa');
 
     var imgCapa = document.createElement('img');
@@ -7,15 +7,13 @@
 
     var titulo = document.getElementById('titulo-anuncio');
     titulo.innerHTML = anuncio.titulo;
-    
+
     var descricao = document.getElementById('desctricao-anuncio');
     descricao.innerHTML = anuncio.descricao;
 
-    //var imgPequenas = document.getElementById('anuncio-thumbnails-div');
-    //imgPequenas.style.display = 'flex';
+    //TODO: javascript para as pequenas imagens
 
     for (i = 0; i < anuncio.imagens.length; i++) {
-        alert(anuncio.imagens[i]);
         var imgDiv = document.createElement('div');
         imgDiv.id = 'anuncio-imagem-thumbnail-div[' + i + ']';
         imgDiv.name = 'anuncio-imagem-thumbnail-div[' + i + ']';
@@ -34,13 +32,13 @@
         imgDiv.appendChild(img);
         imgPequenas.appendChild(imgDiv);
 
-        };
+    };
 
     var nomeP = document.getElementById('nome-anuncio');
     nomeP.innerHTML = anuncio.nome;
 
-    var enderecoDiv = document.getElementById('endereço-anuncio');
-    enderecoDiv.innerHTML = anuncio.endereco; // acertar de acordo com a beleza
+    var enderecoDiv = document.getElementById('endereco-anuncio');
+    enderecoDiv.innerHTML = anuncio.endereco + ' - ' + anuncio.bairro + ' ' + anuncio.cidade + '-' + anuncio.estado;
 
     var telefoneP = document.getElementById('telefone-anuncio');
     if (anuncio.telefone.length == 0) {
@@ -57,7 +55,7 @@
     valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valorMedioContas;
 
     var internetDiv = document.getElementById('internet-anuncio');
-    internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet;
+    internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet + 'Mbps';
 
     var garagemDiv = document.getElementById('garagem-anuncio');
     garagemDiv.innerHTML = (anuncio.garagem) ? 'Possui Garagem' : 'Não possui garagem';
