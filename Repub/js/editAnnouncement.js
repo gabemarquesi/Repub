@@ -6,7 +6,12 @@
     nome.value = anuncio.nome;
 
     var telefone = document.getElementById('telefone');
-    telefone.value = anuncio.telefone;
+    for (i = 0; i < anuncio.telefone.length; i++) {
+        addPhone();
+
+        var phone = document.getElementById('telefone[' + i + ']');
+        phone.value = anuncio.telefone[i];
+    }
 
     var descricao = document.getElementById('descricao');
     descricao.innerHTML = anuncio.descricao;
@@ -124,4 +129,28 @@
             quartoImagemDiv.appendChild(imgDiv);
         }
     }
+}
+
+function addPhone() {
+    alert('oi');
+    var count = document.getElementsByClassName('telefone-div').length;
+
+    var phones = document.getElementById('telefone');
+
+    var phoneDiv = document.createElement('div');
+    phoneDiv.className = 'telefone-div';
+
+    //<input data-toggle="tooltip" title="Telefone para contato" class="announcement-input" type="tel" name="telefone" id="telefone" placeholder="Tel/Cel" />
+    var phone = document.createElement('input');
+    phone.dataToggle = 'tooltip';
+    phone.title = 'Telefone para contato';
+    phone.className = 'announcement-input';
+    phone.type = 'tel';
+    phone.name = 'telefone[' + count + ']';
+    phone.id = 'telefone[' + count + ']';
+    phone.placeholder = 'Tel/Cel';
+
+    phoneDiv.appendChild(phone);
+    phones.appendChild(phoneDiv);
+
 }

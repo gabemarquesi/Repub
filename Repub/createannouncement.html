@@ -31,9 +31,14 @@
                 <div>
                     <input data-toggle="tooltip" title="Nome da República" class="announcement-input" type="text" name="nome" id="nome" placeholder="Nome da República" />
                 </div>
-                <div>
-                    <input data-toggle="tooltip" title="Telefone para contato" class="announcement-input" type="tel" name="telefone" id="telefone" placeholder="Tel/Cel" />
+                <div id="telefone">
+                    <div class="telefone-div">
+                        <input data-toggle="tooltip" title="Telefone para contato" class="announcement-input" type="tel" name="telefone[0]" id="telefone[0]" placeholder="Tel/Cel" />
+                    </div>
                 </div>
+                <button style="margin-left:100px; margin-top:5px;" class="default-button" type="button" onclick="addPhone();">
+                    Adicionar Telefone
+                </button>
                 <div>
                     <textarea data-toggle="tooltip" title="Descrição da república" class="announcement-input" required="required" name="descricao" id="descricao" placeholder="Descrição"></textarea>
                 </div>
