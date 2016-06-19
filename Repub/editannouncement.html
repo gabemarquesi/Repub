@@ -14,7 +14,7 @@
     <script src="js/editAnnouncement.js"></script>
     <script src="js/createAnnouncement.js"></script>
 </head>
-<body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
+<body onload="addBanner(); httpGetAsync('http://localhost:23977/anuncioteste.html',
     function (response) { alert(response); fillForm(JSON.parse(response)); });">
     <div id="content" name="content">
         <div>
@@ -33,9 +33,11 @@
                 <div>
                     <input data-toggle="tooltip" title="Nome da República" class="announcement-input" type="text" name="nome" id="nome" placeholder="Nome da República" />
                 </div>
-                <div>
-                    <input data-toggle="tooltip" title="Telefone para contato" class="announcement-input" type="tel" name="telefone" id="telefone" placeholder="Tel/Cel" />
+                <div id="telefone">
                 </div>
+                <button style="margin-left:100px; margin-top:5px;" class="default-button" type="button" onclick="addPhone();">
+                    Adicionar Telefone
+                </button>
                 <div>
                     <textarea data-toggle="tooltip" title="Descrição da república" class="announcement-input" required="required" name="descricao" id="descricao" placeholder="Descrição"></textarea>
                 </div>

@@ -123,3 +123,25 @@
     rooms.appendChild(roomDiv);
 
 }
+
+function addPhone() {
+    var count = document.getElementsByClassName('telefone-div').length;
+
+    var phones = document.getElementById('telefone');
+
+    var phoneDiv = document.createElement('div');
+    phoneDiv.className = 'telefone-div';
+
+    var phone = document.createElement('input');
+    phone.dataToggle = 'tooltip';
+    phone.title = 'Telefone para contato';
+    phone.className = 'announcement-input';
+    phone.type = 'tel';
+    phone.name = 'telefone[' + count + ']';
+    phone.id = 'telefone[' + count + ']';
+    phone.placeholder = 'Tel/Cel';
+
+    phoneDiv.appendChild(phone);
+    phones.appendChild(phoneDiv);
+
+}

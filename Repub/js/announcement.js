@@ -34,20 +34,25 @@
 
     };
 
-    var nomeDiv = document.getElementById('nome-anuncio');
-    nomeDiv.innerHTML = anuncio.nome;
+    var nomeP = document.getElementById('nome-anuncio');
+    nomeP.innerHTML = anuncio.nome;
 
     var enderecoDiv = document.getElementById('endereco-anuncio');
     enderecoDiv.innerHTML = anuncio.endereco + ' - ' + anuncio.bairro + ' ' + anuncio.cidade + '-' + anuncio.estado;
 
-    var telefoneDiv = document.getElementById('telefone-anuncio');
-    telefoneDiv.innerHTML = anuncio.nome;
-
-    var telefoneDiv = document.getElementById('telefone-anuncio');
-    telefoneDiv.innerHTML = 'Telefone de contato: ' + anuncio.telefone;
+    var telefoneP = document.getElementById('telefone-anuncio');
+    if (anuncio.telefone.length == 0) {
+        telefoneP.remove();
+    } else {
+        var telefone = anuncio.telefone[0];
+        for (i = 1; i < anuncio.telefone.length; i++) {
+            telefone = telefone + ' / ' + anuncio.telefone[i];
+        }
+        telefoneP.innerHTML = 'Telefone de contato: ' + anuncio.telefone;
+    }
 
     var valorMedioContasDiv = document.getElementById('valormediocontas-anuncio');
-    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valormediocontas;
+    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valorMedioContas;
 
     var internetDiv = document.getElementById('internet-anuncio');
     internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet + 'Mbps';
