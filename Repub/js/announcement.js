@@ -54,7 +54,7 @@
     }
 
     var valorMedioContasDiv = document.getElementById('valormediocontas-anuncio');
-    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valormediocontas;
+    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valorMedioContas;
 
     var internetDiv = document.getElementById('internet-anuncio');
     internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet;

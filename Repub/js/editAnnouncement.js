@@ -6,7 +6,9 @@
     nome.value = anuncio.nome;
 
     var telefone = document.getElementById('telefone');
+    alert(anuncio.telefone.length);
     for (i = 0; i < anuncio.telefone.length; i++) {
+ 
         addPhone();
 
         var phone = document.getElementById('telefone[' + i + ']');
