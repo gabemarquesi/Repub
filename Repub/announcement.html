@@ -16,14 +16,13 @@
     <script src="js/banner.js"></script>
 </head>
 <body onload="addBanner(); httpGetAsync('http://localhost:23977/anuncioteste.html',
-    function (response) { alert(response); showAnnouncement(JSON.parse(response));});" >
+    function (response) { alert(response); showAnnouncement(JSON.parse(response));});" style="">
     <div id="content" name="content">
         <div>
             <div style="">
-                <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio">
-                </h1>
+                <h1 style="" class="title-big titulo-anuncio" name="titulo-anuncio" id="titulo-anuncio"></h1>
             </div>
-            <div id="anuncio-thumbnails-div" style="height:80px; background-color:blue;">
+            <div id="anuncio-thumbnails-div" style="height:80px;">
             </div>
             <div class="imagem-anuncio-capa" name="imagem-capa" id="imagem-capa">
             </div>
@@ -40,7 +39,7 @@
                 </div>
                 <p class="descricao-anuncio" id="endereco-anuncio">
                 </p>
-                <p class="descricao-anuncio" id="telefone-anuncio"> 
+                <p class="descricao-anuncio" id="telefone-anuncio">
                 </p>
                 <p class="descricao-anuncio" id="valormediocontas-anuncio">
                 </p>
@@ -55,6 +54,21 @@
                 Quartos
             </legend>
             <div id="quartos">
+            </div>
+        </fieldset>
+        <fieldset class="fieldset">
+            <legend class="title-small">
+                Perguntas e Resposta
+            </legend>
+            <div id="fazer-pergunta">
+                <form>
+                    <textarea data-toggle="tooltip" title="Pergunta" class="announcement-input" id="pergunta" placeholder="Faça sua pergunta aqui..."></textarea>
+                    <button style="margin-left:100px; margin-bottom:50px;" class="default-button" type="submit">Enviar Pergunta</button>
+                </form>
+            </div>
+            <div id="perguntas-para-responder">
+            </div>
+            <div id="perguntas-respondidas">
             </div>
         </fieldset>
 
