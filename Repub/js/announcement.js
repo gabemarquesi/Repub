@@ -4,8 +4,6 @@
 }
 
 function imagemQuarto(endereço) {
-    alert('2');
-
     var body = document.getElementsByTagName('body');
 
     var div = document.createElement('div');
@@ -13,30 +11,21 @@ function imagemQuarto(endereço) {
     div.style.width = '100vw';
     div.style.height = '100vh';
     div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    div.style.position = 'absolute';
+    div.style.backgroundRepeat = 'no-repeat';
+    div.style.backgroundSize = 'initial';
+    div.style.backgroundPosition = 'center';
+    div.style.backgroundImage = endereço;
+    div.style.position = 'fixed';
+    div.style.zIndex = '99';
     div.onclick = function () {
-        alert('3');
-
         deleteDiv(this.id);
     }
-    
-    var imagemDiv = document.createElement('div');
-    imagemDiv.style.width = '80vw';
-    imagemDiv.style.height = '80vh';
-    imagemDiv.style.backgroundColor = '#f6f6f6';
-    imagemDiv.style.backgroundRepeat = 'no-repeat';
-    imagemDiv.style.backgroundPosition = 'center';
-    imagemDiv.style.backgroundSize = 'contain';
-    imagemDiv.style.backgroundImage = endereço;
 
     body[0].insertBefore(div, body[0].firstChild);
-    div.appendChild(imagemDiv);
 
 }
 
 function deleteDiv(id) {
-    alert('4');
-
     var deleteDiv = document.getElementById(id);
     deleteDiv.remove();
 }
@@ -52,8 +41,6 @@ function showAnnouncement(anuncio) {
 
     var descricao = document.getElementById('desctricao-anuncio');
     descricao.innerHTML = anuncio.descricao;
-
-    //TODO: javascript para as pequenas imagens
 
     for (i = 0; i < anuncio.imagens.length; i++) {
         var imgDiv = document.createElement('div');
