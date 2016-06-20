@@ -20,12 +20,14 @@ div#content {
     background-color: white;
     max-width: 820px;
     margin-left: 17.5%;
-    position:sticky;
+    position: sticky;
+    height: 100%;
 }
 
-body {
+body, html {
     font-family: 'Segoe UI';
-    background-color:#fafafa;
+    background-color: #f6f6f6;
+    height: 100%;
 }
 
 .home-main-title {
@@ -55,7 +57,7 @@ body {
 .banner-title-big {
     font-family: 'Segoe UI Light';
     font-size: 55px;
-    padding: 5px 0 0px 35px;
+    padding: 25px 0 0px 35px;
     color: white;
 }
 
@@ -96,14 +98,18 @@ body {
     font-family: 'Segoe UI Light';
     font-size: 30px;
     padding-bottom: 15px;
+    padding-top: 15px;
     color: #40a0ea;
 }
 
 .banner {
     min-height: 230px;
     background-color: #40a0ea;
-    padding-top: 10px;
+    /*padding-top: 10px;*/
+    margin-top: -38px;
     position: relative;
+    top: 18px;
+    left: 0px;
 }
 
 .banner-logo-icon {
@@ -127,7 +133,7 @@ body {
 
 .title-big {
     font-family: 'Segoe UI Light';
-    font-size: 40px;
+    font-size: 50px;
     padding: 30px 0 25px 50px;
     color: #40a0ea;
 }
@@ -248,3 +254,41 @@ body {
     .editar-anuncio-imagem-thumbnail-removeicon:hover {
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.21);
     }
+
+.search-filter {
+    float: left;
+    height: 100%;
+    width: 15%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    /*position:absolute;
+    left:0;*/
+}
+
+.search-filter-label {
+    margin-right: 15px;
+    margin-top: 20px;
+    font-family:'Segoe UI Semibold';
+    /*font-weight:bold;*/
+}
+
+.search-filter-button {
+    min-width:70px;
+    margin-top:15px;
+}
+
+.search-input {
+    margin-right: 0;
+}
+
+.lupa-button {
+    min-width: 40px;
+    background-image: url(../images/magnifying-glass.png);
+    background-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 34px;
+    /*margin-top:25px;*/
+    position: absolute;
+    top: 237px;
+}

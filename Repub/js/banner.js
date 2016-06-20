@@ -10,7 +10,6 @@ $(document).ready(function () {
 
 function addBanner() {
     var body = document.getElementsByTagName('body')[0];
-
     var banner = document.createElement('div');
     banner.className = 'banner';
 
@@ -47,10 +46,10 @@ function addBanner() {
         menu.appendChild(menuButton);
     }
 
-    body.insertBefore(banner, body.firstChild);
-    banner.appendChild(logoSpan);
     logoSpan.appendChild(logo);
+    banner.appendChild(logoSpan);
     banner.appendChild(title);
     banner.appendChild(slogan);
     banner.appendChild(menu);
+    body.insertBefore(banner, body.firstChild);    
 }
