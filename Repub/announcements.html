@@ -14,15 +14,17 @@
     <script src="js/annoucementsGrid.js"></script>
     <script src="js/banner.js"></script>
 </head>
-<body onload="addBanner(); httpGetAsync('anunciosteste.json', function (response) { createGrids(response); }) ;" style="background-color:white;">
-    <div id="content" name="content">
-        <div>
-            <h1 style="" class="title-big">
-                Meus Anúncios
-            </h1>
+<body onload="addBanner(); httpGetAsync('anunciosteste.json', function (response) { createGrids(response); }) ;" >  
+        <div id="content" name="content">
+            <div>
+                <h1 style="" class="title-big">
+                    Meus Anúncios
+                </h1>
+            </div>
+            <div align="center">
+                <div id="grid-container" name="grid-container" style="display:inline-block;">
+                </div>
+            </div>
         </div>
-        <div id="grid-container" name="grid-container" style="margin-left:10%" class="container">
-        </div>
-    </div>
 </body>
 </html>
