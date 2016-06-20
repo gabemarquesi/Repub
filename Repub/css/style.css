@@ -82,6 +82,7 @@ body {
         background-color: #157ccb;
     }
 
+
 .sign-up-div {
     width: 500px;
     padding-bottom: 20px;
@@ -102,12 +103,29 @@ body {
     color: #40a0ea;
 }
 
+.signin-button {
+    min-width: 100px;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background-color: #40a0ea;
+    color: white;
+    border: 0.2px solid white;
+    border-radius: 1px;
+    font-family: 'Segoe UI Semibold';
+}
+
+    .signin-button:hover {
+        background-color: #2080ca;
+    }
+
 .banner {
     min-height: 230px;
     background-color: #40a0ea;
     /*padding-top: 10px;*/
     margin-top: -38px;
     position: relative;
+    width: 100%;
     top: 18px;
     left: 0px;
 }
@@ -115,6 +133,34 @@ body {
 .banner-logo-icon {
     float: left;
     padding: 50px;
+}
+
+.banner-logo-icon-small {
+    float: left;
+    padding: 10px 40px 10px 20px;
+    margin-top: 175px;
+}
+
+.banner-fixo {
+    position: fixed;
+    width: 100%;
+    top: -130px;
+    z-index: 98;
+    box-shadow: 1px 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.banner-cheat {
+    background-color: white;
+}
+
+.signin-button-fixo {
+    top: 186px;
+}
+
+.banner-icon-small {
+    width: 24px;
+    height: 24px;
+    /*margin-top: 160px;*/
 }
 
 .title-small {
@@ -255,10 +301,14 @@ body {
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.21);
     }
 
+.search-filter-go-top {
+    top: 1000px;
+}
+
 .search-filter {
-    position:absolute;
-    left:0;
-    top:230px;
+    position: absolute;
+    left: 0;
+    top: 230px;
     height: 100%;
     width: 185px;
     background-color: #f0f0f0;
@@ -266,10 +316,9 @@ body {
 }
 
 .search-filter-cheat {
-    background-color:red;    
-    float:left;
+    float: left;
     width: 185px;
-    height:100vh;
+    height: 100vh;
 }
 
 .search-filter-label {
@@ -294,8 +343,7 @@ body {
     background-size: 24px;
     background-repeat: no-repeat;
     background-position: center;
-    height: 34px;
-    /*margin-top:25px;*/
+    height: 34px;    
     position: absolute;
-    top: 237px;
+    top: 15px;
 }
