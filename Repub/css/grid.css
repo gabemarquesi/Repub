@@ -64,7 +64,7 @@
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    padding: 3px 0 0px 6px;
+    padding: 3px 0 0px 0px;
 }
 
     .anuncio-edit:hover {
@@ -84,7 +84,7 @@
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    padding: 3px 0 2px 5px;
+    padding: 3px 0 2px 0px;
 }
 
     .anuncio-can:hover {

@@ -42,7 +42,7 @@ function createGrids(anuncios) {
             editLink.className = 'anuncio-edit';
             editLink.id = 'anuncio-' + anuncios[i].id + '-edit-tool';
             editLink.hidden = true;
-            editLink.href = 'editannoucement.html?id=' + anuncios[i].id;
+            editLink.href = 'editannouncement.html?id=' + anuncios[i].id;
 
             var editImg = document.createElement('img');
             editImg.src = 'images/edit-white.png';
