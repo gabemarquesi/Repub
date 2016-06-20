@@ -18,13 +18,14 @@
 <body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
     function (response) { alert(response); showAnuncios(JSON.parse(response)); });">
     <div id="content-search" name="content-search">
+        <div class="search-filter-cheat"></div>
         <div class="search-filter">
-            <h4>Filtros</h4>            
+            <h4>Filtros</h4>
             <div>
                 <label for="filter-garagem" class="search-filter-label">Garagem:</label><input id="filter-garagem" name="filter-garagem" type="checkbox" />
             </div>
             <div>
-                <label for="filter-valor-medio" class="search-filter-label">Valor Médio das Contas (menor que):</label><input type="number" id="filter-valor-medio" name="filter-valor-medio" min="0"/>
+                <label for="filter-valor-medio" class="search-filter-label">Valor Médio das Contas (menor que):</label><input type="number" id="filter-valor-medio" name="filter-valor-medio" min="0" />
             </div>
             <div>
                 <label for="filter-aluguel" class="search-filter-label">Aluguel: (menor que):</label><input type="number" id="filter-aluguel" name="filter-aluguel" min="0" />
@@ -46,7 +47,10 @@
         <div>
             <br /><p style="margin-left:100px; display:inline">Exibindo resultados de repúblicas em Alfenas - MG:</p>
         </div>
-        <div id="grid-container" class="container"></div>
+        <div align="center">
+            <div id="grid-container" style="display:table">
+            </div>
+        </div>
     </div>
 </body>
 </html>

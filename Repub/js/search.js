@@ -9,7 +9,7 @@
 
     while (i < anuncios.length) {
         var row = document.createElement('div');
-        row.className = "row";
+        row.style.display = 'table-row';
         divContainer.appendChild(row);
 
         var j = 0;
