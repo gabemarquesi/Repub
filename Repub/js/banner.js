@@ -37,6 +37,12 @@ function addBanner() {
                     ['anunciar', 'createannouncement.html'],
                     ['meus anúncios', 'announcements.html']];
 
+    var signInButton = document.createElement('button');
+    signInButton.className = 'signin-button';
+    signInButton.innerHTML = 'Entrar';
+    signInButton.onclick = setLink('signin.html');
+
+
     for (i = 0; i < menuLinks.length; i++) {
         var menuButton = document.createElement('p');
         menuButton.className = 'menu-title-text';
@@ -46,6 +52,7 @@ function addBanner() {
         menu.appendChild(menuButton);
     }
 
+    banner.appendChild(signInButton);
     logoSpan.appendChild(logo);
     banner.appendChild(logoSpan);
     banner.appendChild(title);
