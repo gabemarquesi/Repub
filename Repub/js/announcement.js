@@ -138,55 +138,60 @@ function showAnnouncement(anuncio) {
 
 
     }
-    var logado = false; // Teste para ver se esta logado ou não
 
-    var enviarPerguntaDiv = document.getElementById('fazer-pergunta');
-
-    var responderPerguntaDiv = document.getElementById('perguntas-para-responder');
+    var logado = true; // Teste para ver se esta logado ou não
 
     if (logado) {
-        enviarPerguntaDiv.remove();
-    
-        for (i = 0;i<anuncio.perguntas.length;i++){
-            if (anuncio.perguntas[i].resposta != null) {
-                continue;
+        var dono_do_anuncio = false; // Teste para ver se é dono do anuncio ou não
+
+        var enviarPerguntaDiv = document.getElementById('fazer-pergunta');
+
+        var responderPerguntaDiv = document.getElementById('perguntas-para-responder');
+
+        if (dono_do_anuncio) {
+            enviarPerguntaDiv.remove();
+
+            for (i = 0; i < anuncio.perguntas.length; i++) {
+                if (anuncio.perguntas[i].resposta != null) {
+                    continue;
+                }
+                var formResposta = document.createElement('form');
+
+                var questionP = document.createElement('p');
+                questionP.className = 'perguntas-anuncio';
+                questionP.id = 'pergunta[' + anuncio.perguntas[i].id + ']';
+                questionP.innerHTML = anuncio.perguntas[i].pergunta;
+
+                var respostaInput = document.createElement('textarea');
+                respostaInput.dataToggle = 'tooltip';
+                respostaInput.title = 'resposta';
+                respostaInput.className = 'announcement-input';
+                respostaInput.id = 'resposta[' + anuncio.perguntas[i].id + ']';
+                respostaInput.name = 'resposta[' + anuncio.perguntas[i].id + ']';
+                respostaInput.placeholder = 'Responda aqui...';
+
+                var buttonResposta = document.createElement('button');
+                buttonResposta.style.marginLeft = '100px';
+                buttonResposta.style.marginBottom = '50px';
+                buttonResposta.className = 'default-button';
+                buttonResposta.type = 'submit';
+                buttonResposta.innerHTML = 'Enviar Resposta';
+
+                var borderDiv = document.createElement('div');
+                borderDiv.className = 'room-border';
+
+                formResposta.appendChild(questionP);
+                formResposta.appendChild(respostaInput);
+                formResposta.appendChild(buttonResposta);
+                responderPerguntaDiv.appendChild(formResposta);
+                responderPerguntaDiv.appendChild(borderDiv);
+
             }
-            var formResposta = document.createElement('form');
 
-            var questionP = document.createElement('p');
-            questionP.className = 'perguntas-anuncio';
-            questionP.id = 'pergunta[' + anuncio.perguntas[i].id+ ']';
-            questionP.innerHTML = anuncio.perguntas[i].pergunta;
-
-            var respostaInput = document.createElement('textarea');
-            respostaInput.dataToggle = 'tooltip';
-            respostaInput.title='resposta';
-            respostaInput.className='announcement-input';
-            respostaInput.id = 'resposta[' + anuncio.perguntas[i].id+ ']';
-            respostaInput.name = 'resposta[' + anuncio.perguntas[i].id+ ']';
-            respostaInput.placeholder='Responda aqui...';
-
-            var buttonResposta = document.createElement('button');
-            buttonResposta.style.marginLeft='100px';
-            buttonResposta.style.marginBottom='50px';
-            buttonResposta.className='default-button';
-            buttonResposta.type='submit';
-            buttonResposta.innerHTML = 'Enviar Resposta';
-
-            var borderDiv = document.createElement('div');
-            borderDiv.className = 'room-border';
-
-            formResposta.appendChild(questionP);
-            formResposta.appendChild(respostaInput);
-            formResposta.appendChild(buttonResposta);
-            responderPerguntaDiv.appendChild(formResposta);
-            responderPerguntaDiv.appendChild(borderDiv);
+        } else {
+            responderPerguntaDiv.remove();
 
         }
-
-    } else {
-        responderPerguntaDiv.remove();
-
     }
 
     var perguntasRespondidasDiv = document.getElementById('perguntas-respondidas');
