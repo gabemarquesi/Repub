@@ -2,6 +2,8 @@
     var titulo = document.getElementById('titulo');
     titulo.value = anuncio.titulo;
 
+    $('.title-big')[0].innerHTML = anuncio.titulo;
+
     var nome = document.getElementById('nome');
     nome.value = anuncio.nome;
 

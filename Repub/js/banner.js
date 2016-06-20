@@ -39,7 +39,7 @@ $(window).scroll(function () {
         var menu = document.createElement('div');
         menu.className = 'menu';
 
-        var menuLinks = [['home', 'home.html'],
+        var menuLinks = [
                         ['pesquisar', 'search.html'],
                         ['anunciar', 'createannouncement.html'],
                         ['meus anúncios', 'announcements.html']];
@@ -98,12 +98,12 @@ function addBanner() {
 
     var slogan = document.createElement('h2');
     slogan.className = 'banner-title-small';
-    slogan.innerHTML = 'Encontre sua republica de qualquer lugar';
+    slogan.innerHTML = 'Encontre sua nova república de qualquer lugar do Brasil!';
 
     var menu = document.createElement('div');
     menu.className = 'menu';
 
-    var menuLinks = [['home', 'home.html'],
+    var menuLinks = [
                     ['pesquisar', 'search.html'],
                     ['anunciar', 'createannouncement.html'],
                     ['meus anúncios', 'announcements.html']];
