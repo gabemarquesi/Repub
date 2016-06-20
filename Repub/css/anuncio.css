@@ -3,17 +3,17 @@
     margin: 70px;
     min-width: 200px;
     background-color: #f6f6f6;
-    background-attachment:local;
+    background-attachment: local;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
-.titulo-anuncio {    
+.titulo-anuncio {
     margin-bottom: 60px;
-    text-align:center;
+    text-align: center;
     font-size: 65px;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
 }
 
 .descricao-anuncio {
@@ -21,10 +21,33 @@
     font-size: 17px;
     padding: 15px;
     padding-left: 50px;
-    font-weight:200;
-    text-align:justify;
+    font-weight: 200;
+    text-align: justify;
 }
 
 .nome-rep {
-    text-align:center;
+    text-align: center;
+}
+
+.imagens-quarto {
+    margin-left: 25px;
+    margin-bottom: 10px;
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    display: inline-block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f6f6f6;
+}
+
+.perguntas-anuncio {
+    font-family: 'Segoe UI Light';
+    font-size: 15px;
+    padding: 5px;
+    padding-left: 50px;
+    font-weight: 200;
+    text-align: justify;
 }

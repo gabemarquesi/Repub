@@ -1,6 +1,47 @@
-﻿function showAnnouncement(anuncio) {
-    alert('oi');
+﻿function trocaImagemCapa(endereço){
+    var imgCapaSpan = document.getElementById('imagem-capa');
+    imgCapaSpan.style.backgroundImage = endereço;
+}
 
+function imagemQuarto(endereço) {
+    alert('2');
+
+    var body = document.getElementsByTagName('body');
+
+    var div = document.createElement('div');
+    div.id = 'imagem-quarto';
+    div.style.width = '100vw';
+    div.style.height = '100vh';
+    div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    div.style.position = 'absolute';
+    div.onclick = function () {
+        alert('3');
+
+        deleteDiv(this.id);
+    }
+    
+    var imagemDiv = document.createElement('div');
+    imagemDiv.style.width = '80vw';
+    imagemDiv.style.height = '80vh';
+    imagemDiv.style.backgroundColor = '#f6f6f6';
+    imagemDiv.style.backgroundRepeat = 'no-repeat';
+    imagemDiv.style.backgroundPosition = 'center';
+    imagemDiv.style.backgroundSize = 'contain';
+    imagemDiv.style.backgroundImage = endereço;
+
+    body[0].insertBefore(div, body[0].firstChild);
+    div.appendChild(imagemDiv);
+
+}
+
+function deleteDiv(id) {
+    alert('4');
+
+    var deleteDiv = document.getElementById(id);
+    deleteDiv.remove();
+}
+
+function showAnnouncement(anuncio) {
     document.title = 'Repub - ' + anuncio.titulo;
 
     var imgCapaSpan = document.getElementById('imagem-capa');
@@ -18,19 +59,15 @@
         var imgDiv = document.createElement('div');
         imgDiv.id = 'anuncio-imagem-thumbnail-div[' + i + ']';
         imgDiv.name = 'anuncio-imagem-thumbnail-div[' + i + ']';
-        imgDiv.className = 'images-input-field';
-
-        var img = document.createElement('div');
-        img.className = "image-preview";
-        img.id = 'anuncio-imagem-preview[' + i + ']';
-        img.name = 'anuncio-imagem-preview[' + i + ']';
-        img.className = 'editar-anuncio-imagem-thumbnail';
-        img.style.backgroundImage = 'url(' + anuncio.imagens[i] + ')';
+        imgDiv.style.backgroundImage = 'url(' + anuncio.imagens[i] + ')';
+        imgDiv.className = 'imagens-quarto';
+        imgDiv.style.marginLeft = '6.25%';
+        imgDiv.onclick= function(){
+            trocaImagemCapa(this.style.backgroundImage);
+        };
 
         var imgPequenas = document.getElementById('anuncio-thumbnails-div');
-        imgPequenas.style.display = 'flex';
 
-        imgDiv.appendChild(img);
         imgPequenas.appendChild(imgDiv);
 
     };
@@ -53,7 +90,7 @@
     }
 
     var valorMedioContasDiv = document.getElementById('valormediocontas-anuncio');
-    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valorMedioContas;
+    valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: R$ ' + anuncio.valorMedioContas;
 
     var internetDiv = document.getElementById('internet-anuncio');
     if (anuncio.internet == null) {
@@ -84,29 +121,120 @@
         descricaoQuartoP.id = 'quarto[' + i + ']-descricao';
         descricaoQuartoP.innerHTML = anuncio.quartos[i].descricao;
 
-        var imagemDiv = document.createElement('div');
-        imagemDiv.id = 'div-imagem';
-
         quartoDiv.appendChild(valorQuartoP);
         quartoDiv.appendChild(descricaoQuartoP);
 
+        var imagemDiv = document.createElement('div');
+        imagemDiv.style.marginLeft = '100px';
+        imagemDiv.id = 'div-imagem';
+
         for (j = 0; j < anuncio.quartos[i].imagens.length; j++) {
-            alert(anuncio.quartos[i].imagens[j]);
             var img = document.createElement('div');
             img.id = 'quarto-' + i + '-imagem[' + j + ']-thumbnail';
             img.style.backgroundImage = 'url(' + anuncio.quartos[i].imagens[j] + ')';
-            img.style.backgroundSize = 'contain';
-            img.style.backgroundRepeat = 'no-repeat';
-            img.className = 'images-input-field';
+            img.className = 'imagens-quarto';
+            img.onclick = function () {
+                alert('1');
+                imagemQuarto(this.style.backgroundImage);
+            }
 
             imagemDiv.appendChild(img);
         }
 
+        quartoDiv.appendChild(imagemDiv);
+        quartosDiv.appendChild(quartoDiv);
+
+        if (anuncio.quartos[i + 1] != null) {
+            var borderDiv = document.createElement('div');
+            borderDiv.className = 'room-border';
+            quartoDiv.appendChild(borderDiv);
+        }
+
+
+    }
+    var logado = true; // Teste para ver se esta logado ou não
+
+    var enviarPerguntaDiv = document.getElementById('fazer-pergunta');
+
+    var responderPerguntaDiv = document.getElementById('perguntas-para-responder');
+
+    if (logado) {
+        enviarPerguntaDiv.remove();
+    
+        for (i = 0;i<anuncio.perguntas.length;i++){
+            if (anuncio.perguntas[i].resposta != null) {
+                continue;
+            }
+            var formResposta = document.createElement('form');
+
+            var questionP = document.createElement('p');
+            questionP.className = 'perguntas-anuncio';
+            questionP.id = 'pergunta[' + anuncio.perguntas[i].id+ ']';
+            questionP.innerHTML = anuncio.perguntas[i].pergunta;
+
+            var respostaInput = document.createElement('textarea');
+            respostaInput.dataToggle = 'tooltip';
+            respostaInput.title='resposta';
+            respostaInput.className='announcement-input';
+            respostaInput.id = 'resposta[' + anuncio.perguntas[i].id+ ']';
+            respostaInput.name = 'resposta[' + anuncio.perguntas[i].id+ ']';
+            respostaInput.placeholder='Responda aqui...';
+
+            var buttonResposta = document.createElement('button');
+            buttonResposta.style.marginLeft='100px';
+            buttonResposta.style.marginBottom='50px';
+            buttonResposta.className='default-button';
+            buttonResposta.type='submit';
+            buttonResposta.innerHTML = 'Enviar Resposta';
+
+            var borderDiv = document.createElement('div');
+            borderDiv.className = 'room-border';
+
+            formResposta.appendChild(questionP);
+            formResposta.appendChild(respostaInput);
+            formResposta.appendChild(buttonResposta);
+            responderPerguntaDiv.appendChild(formResposta);
+            responderPerguntaDiv.appendChild(borderDiv);
+
+        }
+
+    } else {
+        responderPerguntaDiv.remove();
+
+    }
+
+    var perguntasRespondidasDiv = document.getElementById('perguntas-respondidas');
+    perguntasRespondidasDiv.style.display = 'inline';
+
+    for (i = 0; i < anuncio.perguntas.length; i++) {
+        if (anuncio.perguntas[i].resposta == null) {
+            continue;
+        }
+        var perguntaDiv = document.createElement('div');
+
+        var perguntaP = document.createElement('p');
+        perguntaP.className = 'perguntas-anuncio';
+        perguntaP.id = 'pergunta[' + i + ']';
+        perguntaP.innerHTML = '<img src="images/social.png">  ' + anuncio.perguntas[i].pergunta;
+
+        var imgResposta = document.createElement('img');
+        imgResposta.src = 'images/social-1.png';
+
+        var respostaP = document.createElement('p');
+        respostaP.className = 'perguntas-anuncio';
+        respostaP.style.marginLeft = '50px';
+        respostaP.id = 'resposta[' + i + ']';
+        respostaP.innerHTML = '<img src="images/social-1.png">  ' + anuncio.perguntas[i].resposta;
+
         var borderDiv = document.createElement('div');
         borderDiv.className = 'room-border';
 
-        quartoDiv.appendChild(imagemDiv);
-        quartosDiv.appendChild(quartoDiv);
-        quartoDiv.appendChild(borderDiv);
+        perguntaDiv.appendChild(perguntaP);
+        perguntaDiv.appendChild(respostaP);
+        perguntaDiv.appendChild(borderDiv);
+        perguntasRespondidasDiv.appendChild(perguntaDiv);
+
+
     }
 }
+
