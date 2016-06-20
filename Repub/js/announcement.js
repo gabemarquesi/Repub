@@ -3,6 +3,44 @@
     imgCapaSpan.style.backgroundImage = endereço;
 }
 
+function imagemQuarto(endereço) {
+    alert('2');
+
+    var body = document.getElementsByTagName('body');
+
+    var div = document.createElement('div');
+    div.id = 'imagem-quarto';
+    div.style.width = '100vw';
+    div.style.height = '100vh';
+    div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    div.style.position = 'absolute';
+    div.onclick = function () {
+        alert('3');
+
+        deleteDiv(this.id);
+    }
+    
+    var imagemDiv = document.createElement('div');
+    imagemDiv.style.width = '80vw';
+    imagemDiv.style.height = '80vh';
+    imagemDiv.style.backgroundColor = '#f6f6f6';
+    imagemDiv.style.backgroundRepeat = 'no-repeat';
+    imagemDiv.style.backgroundPosition = 'center';
+    imagemDiv.style.backgroundSize = 'contain';
+    imagemDiv.style.backgroundImage = endereço;
+
+    body[0].insertBefore(div, body[0].firstChild);
+    div.appendChild(imagemDiv);
+
+}
+
+function deleteDiv(id) {
+    alert('4');
+
+    var deleteDiv = document.getElementById(id);
+    deleteDiv.remove();
+}
+
 function showAnnouncement(anuncio) {
     document.title = 'Repub - ' + anuncio.titulo;
 
@@ -95,6 +133,10 @@ function showAnnouncement(anuncio) {
             img.id = 'quarto-' + i + '-imagem[' + j + ']-thumbnail';
             img.style.backgroundImage = 'url(' + anuncio.quartos[i].imagens[j] + ')';
             img.className = 'imagens-quarto';
+            img.onclick = function () {
+                alert('1');
+                imagemQuarto(this.style.backgroundImage);
+            }
 
             imagemDiv.appendChild(img);
         }
