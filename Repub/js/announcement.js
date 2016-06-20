@@ -1,9 +1,10 @@
 ﻿function showAnnouncement(anuncio) {
+    alert('oi');
+
+    document.title = 'Repub - ' + anuncio.titulo;
 
     var imgCapaSpan = document.getElementById('imagem-capa');
-
-    var imgCapa = document.createElement('img');
-    imgCapa.src = anuncio.imagemCapa;
+    imgCapaSpan.style.backgroundImage = 'url(' + anuncio.imagemCapa + ')';
 
     var titulo = document.getElementById('titulo-anuncio');
     titulo.innerHTML = anuncio.titulo;
@@ -38,7 +39,7 @@
     nomeP.innerHTML = anuncio.nome;
 
     var enderecoDiv = document.getElementById('endereco-anuncio');
-    enderecoDiv.innerHTML = anuncio.endereco + ' - ' + anuncio.bairro + ' ' + anuncio.cidade + '-' + anuncio.estado;
+    enderecoDiv.innerHTML = anuncio.endereco + ' - ' + anuncio.bairro + ' ' + anuncio.cidade + ' - ' + anuncio.estado;
 
     var telefoneP = document.getElementById('telefone-anuncio');
     if (anuncio.telefone.length == 0) {
@@ -46,18 +47,66 @@
     } else {
         var telefone = anuncio.telefone[0];
         for (i = 1; i < anuncio.telefone.length; i++) {
-            telefone = telefone + ' / ' + anuncio.telefone[i];
+            telefone = telefone + '  /  ' + anuncio.telefone[i];
         }
-        telefoneP.innerHTML = 'Telefone de contato: ' + anuncio.telefone;
+        telefoneP.innerHTML = 'Telefone de contato: ' + telefone;
     }
 
     var valorMedioContasDiv = document.getElementById('valormediocontas-anuncio');
     valorMedioContasDiv.innerHTML = 'Valor Médio das Contas: ' + anuncio.valorMedioContas;
 
     var internetDiv = document.getElementById('internet-anuncio');
-    internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet + 'Mbps';
+    if (anuncio.internet == null) {
+        internetDiv.remove();
+    } else {
+        internetDiv.innerHTML = 'Velocidade da Internet: ' + anuncio.internet + 'Mbps';
+    }
 
     var garagemDiv = document.getElementById('garagem-anuncio');
     garagemDiv.innerHTML = (anuncio.garagem) ? 'Possui Garagem' : 'Não possui garagem';
 
+    var quartosDiv = document.getElementById('quartos');
+
+    for (i = 0; i < anuncio.quartos.length; i++) {
+        if (anuncio.quartos[i].alugado == true) {
+            continue
+        }
+
+        var quartoDiv = document.createElement('div');
+
+        var valorQuartoP = document.createElement('p');
+        valorQuartoP.className = 'descricao-anuncio';
+        valorQuartoP.id = 'quarto[' + i + ']-valor';
+        valorQuartoP.innerHTML = 'Aluguel: R$' + anuncio.quartos[i].valor;
+
+        var descricaoQuartoP = document.createElement('p');
+        descricaoQuartoP.className = 'descricao-anuncio';
+        descricaoQuartoP.id = 'quarto[' + i + ']-descricao';
+        descricaoQuartoP.innerHTML = anuncio.quartos[i].descricao;
+
+        var imagemDiv = document.createElement('div');
+        imagemDiv.id = 'div-imagem';
+
+        quartoDiv.appendChild(valorQuartoP);
+        quartoDiv.appendChild(descricaoQuartoP);
+
+        for (j = 0; j < anuncio.quartos[i].imagens.length; j++) {
+            alert(anuncio.quartos[i].imagens[j]);
+            var img = document.createElement('div');
+            img.id = 'quarto-' + i + '-imagem[' + j + ']-thumbnail';
+            img.style.backgroundImage = 'url(' + anuncio.quartos[i].imagens[j] + ')';
+            img.style.backgroundSize = 'contain';
+            img.style.backgroundRepeat = 'no-repeat';
+            img.className = 'images-input-field';
+
+            imagemDiv.appendChild(img);
+        }
+
+        var borderDiv = document.createElement('div');
+        borderDiv.className = 'room-border';
+
+        quartoDiv.appendChild(imagemDiv);
+        quartosDiv.appendChild(quartoDiv);
+        quartoDiv.appendChild(borderDiv);
+    }
 }

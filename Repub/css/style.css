@@ -1,5 +1,4 @@
-﻿
-@font-face {
+﻿@font-face {
     font-family: 'Segoe UI Bold';
     font-style: normal;
     font-weight: normal;
@@ -17,8 +16,16 @@
     src: url('../fonts/seguisb.ttf') format('truetype');
 }
 
+div#content {
+    background-color: white;
+    max-width: 820px;
+    margin-left: 17.5%;
+    position:sticky;
+}
+
 body {
     font-family: 'Segoe UI';
+    background-color:#fafafa;
 }
 
 .home-main-title {
@@ -190,8 +197,6 @@ body {
     margin-left: 125px;
     margin-bottom: 5px;
     min-height: 35px;
-
-
 }
 
 .image-input-button {
