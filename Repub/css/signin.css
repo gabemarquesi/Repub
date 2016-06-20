@@ -1,0 +1,25 @@
+﻿body,html {
+    height:100%;
+}
+
+
+.home-title {
+    font-family: 'Segoe UI Bold';
+    background-color: white;
+    height: 1000px;
+    text-align: center;
+    padding-top: 180px;
+    font-size: 70px;
+}
+
+.signup-button{
+    min-width: 100px;
+    position:absolute;
+    right:8px;
+    top:8px;
+    background-color: #40a0ea;
+    color: white;
+    border: 0.2px solid white;
+    border-radius: 1px;
+    font-family: 'Segoe UI Semibold';
+}

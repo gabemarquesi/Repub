@@ -121,7 +121,6 @@ function showAnnouncement(anuncio) {
             img.style.backgroundImage = 'url(' + anuncio.quartos[i].imagens[j] + ')';
             img.className = 'imagens-quarto';
             img.onclick = function () {
-                alert('1');
                 imagemQuarto(this.style.backgroundImage);
             }
 
@@ -139,7 +138,7 @@ function showAnnouncement(anuncio) {
 
 
     }
-    var logado = true; // Teste para ver se esta logado ou não
+    var logado = false; // Teste para ver se esta logado ou não
 
     var enviarPerguntaDiv = document.getElementById('fazer-pergunta');
 
