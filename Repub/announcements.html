@@ -11,10 +11,12 @@
     <link href="css/grid.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
+    <script src="js/signin.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="js/annoucementsGrid.js"></script>
     <script src="js/banner.js"></script>
 </head>
-<body onload="addBanner(); httpGetAsync('anunciosteste.json', function (response) { createGrids(response); }) ;" >  
+<body onload="verify(); addBanner(); httpGetAsync('anunciosteste.json', function (response) { createGrids(response); });" >  
         <div id="content" name="content">
             <div>
                 <h1 style="" class="title-big">

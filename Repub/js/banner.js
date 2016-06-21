@@ -9,6 +9,9 @@ $(document).ready(function () {
 });
 
 $(window).scroll(function () {
+
+    var logado = (Cookies.get('username')!=null);
+
     var sticky = $('.banner'),
         scroll = $(window).scrollTop();
     var body = document.getElementsByTagName('body')[0];
@@ -39,15 +42,28 @@ $(window).scroll(function () {
         var menu = document.createElement('div');
         menu.className = 'menu';
 
-        var menuLinks = [
-                        ['pesquisar', 'search.html'],
-                        ['anunciar', 'createannouncement.html'],
-                        ['meus anúncios', 'announcements.html']];
+        var anunciar = 'signin.html';
+        var meusAnuncios = 'signin.html';
 
         var signInButton = document.createElement('button');
         signInButton.className = 'signin-button signin-button-fixo';
         signInButton.innerHTML = 'Entrar';
         signInButton.onclick = setLink('signin.html');
+
+        if (logado) {
+            anunciar = 'createannouncement.html';
+            meusAnuncios = 'announcements.html';
+            signInButton.innerHTML = 'Sair';
+            signInButton.onclick = function () {
+                Cookies.remove('username');
+                window.location.reload();
+                };
+        } 
+
+        var menuLinks = [
+                        ['pesquisar', 'search.html'],
+                        ['anunciar', anunciar],
+                        ['meus anúncios', meusAnuncios]];
 
 
         for (i = 0; i < menuLinks.length; i++) {
@@ -67,7 +83,7 @@ $(window).scroll(function () {
         banner.appendChild(menu);
         body.insertBefore(banner, body.firstChild);
 
-        sticky.css({'visibility': 'hidden', 'max-height':'170px', 'min-height':'170px'});   
+        sticky.css({ 'visibility': 'hidden', 'max-height': '170px', 'min-height': '170px' });
         $('.search-filter').css('top', '150px');
     }
     else {
@@ -79,10 +95,13 @@ $(window).scroll(function () {
 });
 
 function addBanner() {
+
+    var logado = (Cookies.get('username') != null);
+
     var body = document.getElementsByTagName('body')[0];
     var banner = document.createElement('div');
     banner.className = 'banner';
-    
+
     var logoSpan = document.createElement('span');
     logoSpan.className = 'banner-logo-icon';
 
@@ -103,16 +122,28 @@ function addBanner() {
     var menu = document.createElement('div');
     menu.className = 'menu';
 
-    var menuLinks = [
-                    ['pesquisar', 'search.html'],
-                    ['anunciar', 'createannouncement.html'],
-                    ['meus anúncios', 'announcements.html']];
+    var anunciar = 'signin.html';
+    var meusAnuncios = 'signin.html';
 
     var signInButton = document.createElement('button');
     signInButton.className = 'signin-button';
     signInButton.innerHTML = 'Entrar';
     signInButton.onclick = setLink('signin.html');
 
+    if (logado) {
+        anunciar = 'createannouncement.html';
+        meusAnuncios = 'announcements.html';
+        signInButton.innerHTML = 'Sair';
+        signInButton.onclick = function () {
+            Cookies.remove('username');
+            window.location.reload();
+        };
+    } 
+
+    var menuLinks = [
+                    ['pesquisar', 'search.html'],
+                    ['anunciar', anunciar],
+                    ['meus anúncios', meusAnuncios]];
 
     for (i = 0; i < menuLinks.length; i++) {
         var menuButton = document.createElement('p');

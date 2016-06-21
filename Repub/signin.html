@@ -12,6 +12,7 @@
     <link href="css/grid.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="js/signin.js"></script>
     <script src="js/banner.js"></script>
 </head>
@@ -47,7 +48,7 @@
                         <input id="loginSenha" class="sign-up-input" type="password" placeholder="●●●●●●●" />
                     </div>
                     <div>
-                        <button value="Entrar" onclick="login(document.getElementById('loginEmail'), document.getElementById('loginSenha'));" class="default-button">Entrar</button>
+                        <button value="Entrar" onclick="login(document.getElementById('loginEmail'), document.getElementById('loginSenha')); window.location.href = 'search.html';" class="default-button">Entrar</button>
                     </div>
                 </div>
             </div>

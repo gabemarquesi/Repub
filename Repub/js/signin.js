@@ -11,3 +11,11 @@
     });
 
 }
+
+function verify() {
+    var logado = Cookies.get('username') != null;
+
+    if (!logado) {
+        window.location.href = 'singin.html';
+    }
+}
