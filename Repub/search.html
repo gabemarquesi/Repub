@@ -16,7 +16,7 @@
     <script src="js/search.js"></script>
 </head>
 <body onload="addBanner(); httpGetAsync('http://localhost/Trabalho%20PS/Repub/anuncioteste.html',
-    function (response) { alert(response); showAnuncios(JSON.parse(response)); });">
+    function (response) { showAnuncios(JSON.parse(response)); });">
     <div id="content-search" name="content-search">
         <div class="search-filter-cheat"></div>
         <div class="search-filter">
@@ -37,7 +37,7 @@
                 <button class="default-button search-filter-button">Filtrar</button>
             </div>
         </div>
-        <div>
+        <div style="position:relative">
             <input type="text" class="announcement-input search-input" placeholder="Pesquise por nome de república ou anúncio" />
             <button type="submit" class="default-button lupa-button" />
         </div>
