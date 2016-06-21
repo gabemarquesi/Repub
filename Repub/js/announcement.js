@@ -142,13 +142,13 @@ function showAnnouncement(anuncio) {
     var logado = true; // Teste para ver se esta logado ou não
 
     if (logado) {
-        var dono_do_anuncio = false; // Teste para ver se é dono do anuncio ou não
+        var donoDoAnuncio = false; // Teste para ver se é dono do anuncio ou não
 
         var enviarPerguntaDiv = document.getElementById('fazer-pergunta');
 
         var responderPerguntaDiv = document.getElementById('perguntas-para-responder');
 
-        if (dono_do_anuncio) {
+        if (donoDoAnuncio) {
             enviarPerguntaDiv.remove();
 
             for (i = 0; i < anuncio.perguntas.length; i++) {

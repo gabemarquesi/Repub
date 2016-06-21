@@ -11,6 +11,7 @@
     <link href="css/grid.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="js/requestHandler.js"></script>
+    <script src="js/signin.js"></script>
     <script src="js/banner.js"></script>
 </head>
 <body onload="addBanner();">
@@ -37,19 +38,17 @@
             </div>
             <div class="sign-in-div" id="login-right" style="display:inline-block">
                 <h1 class="sign-up-title">Entre</h1>
-                <form action="/" method="post">
+                <div>
                     <div>
-                        <div>
-                            <input id="loginEmail" name="email" class="sign-up-input" type="email" placeholder="email@repub.com" />
-                        </div>
-                        <div>
-                            <input id="loginSenha" class="sign-up-input" type="password" placeholder="●●●●●●●" />
-                        </div>
-                        <div>
-                            <input value="Entrar" type="submit" class="default-button" />
-                        </div>
+                        <input id="loginEmail" name="email" class="sign-up-input" type="email" placeholder="email@repub.com" />
                     </div>
-                </form>
+                    <div>
+                        <input id="loginSenha" class="sign-up-input" type="password" placeholder="●●●●●●●" />
+                    </div>
+                    <div>
+                        <button value="Entrar" onclick="login(document.getElementById('loginEmail'), document.getElementById('loginSenha'));" class="default-button">Entrar</button>
+                    </div>
+                </div>
             </div>
             <br style="clear:both;" />
         </div>
