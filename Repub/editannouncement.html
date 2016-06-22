@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html >
 <head>
     <title>
         Repub - Editar Anúncio
@@ -15,8 +15,9 @@
     <script src="js/banner.js"></script>
     <script src="js/editAnnouncement.js"></script>
     <script src="js/createAnnouncement.js"></script>
+    <script>verify();</script>
 </head>
-<body onload="verify(); addBanner(); httpGetAsync('http://localhost:23977/anuncioteste.html',
+<body onload="addBanner(); httpGetAsync('anuncioteste.html',
     function (response) { fillForm(JSON.parse(response)); });">
     <div id="content" name="content">
         <div>

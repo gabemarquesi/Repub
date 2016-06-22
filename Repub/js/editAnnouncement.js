@@ -8,7 +8,6 @@
     nome.value = anuncio.nome;
 
     var telefone = document.getElementById('telefone');
-    alert(anuncio.telefone.length);
     for (i = 0; i < anuncio.telefone.length; i++) {
  
         addPhone();
@@ -136,7 +135,6 @@
 }
 
 function addPhone() {
-    alert('oi');
     var count = document.getElementsByClassName('telefone-div').length;
 
     var phones = document.getElementById('telefone');

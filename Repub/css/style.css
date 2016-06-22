@@ -310,14 +310,14 @@ body {
     left: 0;
     top: 230px;
     height: 100%;
-    width: 185px;
+    width: 200px;
     background-color: #f0f0f0;
     padding: 20px;
 }
 
 .search-filter-cheat {
     float: left;
-    width: 185px;
+    width: 200px;
     height: 100vh;
 }
 

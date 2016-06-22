@@ -18,11 +18,6 @@ function deleteConfirm(url) {
 
 function createGrids(anuncios) {
 
-    anuncios = [{ 'id': '1', 'imagemCapa': { 'endereco': 'images/indice0.jpg' }, 'titulo': 'Alugo republica com garagem.' },
-                { 'id': '2', 'imagemCapa': { 'endereco': 'images/indice1.jpg' }, 'titulo': 'Alugo republica com cachorro.' },
-                { 'id': '3', 'imagemCapa': { 'endereco': 'images/indice2.jpg' }, 'titulo': 'Alugo republica comunista.' }
-    ];
-
     var divContainer = document.getElementById("grid-container");
     var i = 0;
 
@@ -68,7 +63,7 @@ function createGrids(anuncios) {
 
             var img = document.createElement('div');
             img.className = 'anuncio-img';
-            img.style.backgroundImage = 'url("' + anuncios[i].imagemCapa.endereco + '")';
+            img.style.backgroundImage = 'url("' + anuncios[i].imagemCapa + '")';
             img.style.backgroundPosition = 'center';
             img.style.backgroundRepeat = 'no-repeat';
 
