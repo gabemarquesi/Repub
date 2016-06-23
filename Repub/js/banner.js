@@ -55,7 +55,7 @@ $(window).scroll(function () {
             meusAnuncios = 'announcements.html';
             signInButton.innerHTML = 'Sair';
             signInButton.onclick = function () {
-                Cookies.remove('username');
+                Cookies.remove('PHPSESSID');
                 window.location.reload();
                 };
         } 
@@ -135,7 +135,7 @@ function addBanner() {
         meusAnuncios = 'announcements.html';
         signInButton.innerHTML = 'Sair';
         signInButton.onclick = function () {
-            Cookies.remove('username');
+            Cookies.remove('PHPSESSID');
             window.location.reload();
         };
     } 
