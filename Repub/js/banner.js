@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 $(window).scroll(function () {
 
-    var logado = (Cookies.get('username')!=null);
+    var logado = (Cookies.get('PHPSESSID')!=null);
 
     var sticky = $('.banner'),
         scroll = $(window).scrollTop();
@@ -96,7 +96,7 @@ $(window).scroll(function () {
 
 function addBanner() {
 
-    var logado = (Cookies.get('username') != null);
+    var logado = (Cookies.get('PHPSESSID') != null);
 
     var body = document.getElementsByTagName('body')[0];
     var banner = document.createElement('div');
