@@ -10,14 +10,14 @@ function deleteConfirm(url) {
 
         if (confirm('Deseja mesmo excluir este anúncio?')) {
             alert(url);
-            httpGet(url);
+            httpGetAsync(url);
             window.location.reload();
         }
     };
 }
 
 function createGrids(anuncios) {
-
+    alert(anuncios.length);
     var divContainer = document.getElementById("grid-container");
     var i = 0;
 
@@ -63,7 +63,7 @@ function createGrids(anuncios) {
 
             var img = document.createElement('div');
             img.className = 'anuncio-img';
-            img.style.backgroundImage = 'url("' + anuncios[i].imagemCapa + '")';
+            img.style.backgroundImage = 'url("' + anuncios[i].imagemCapa.endereco + '")';
             img.style.backgroundPosition = 'center';
             img.style.backgroundRepeat = 'no-repeat';
 

@@ -34,7 +34,7 @@ function showAnnouncement(anuncio) {
     document.title = 'Repub - ' + anuncio.titulo;
 
     var imgCapaSpan = document.getElementById('imagem-capa');
-    imgCapaSpan.style.backgroundImage = 'url(' + anuncio.imagemCapa + ')';
+    imgCapaSpan.style.backgroundImage = 'url(' + anuncio.imagemCapa.endereco + ')';
 
     var titulo = document.getElementById('titulo-anuncio');
     titulo.innerHTML = anuncio.titulo;
