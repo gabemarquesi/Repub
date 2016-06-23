@@ -17,17 +17,17 @@
     <script src="js/banner.js"></script>
     <script>verify();</script>
 </head>
-<body onload="addBanner(); httpGetAsync('repub.paginas/announcements.php?action=getAnuncios', function (response) { createGrids(JSON.parse(response)); });" >  
-        <div id="content" name="content">
-            <div>
-                <h1 style="" class="title-big">
-                    Meus Anúncios
-                </h1>
-            </div>
-            <div align="center">
-                <div id="grid-container" name="grid-container" style="display:inline-block;">
-                </div>
+<body onload="addBanner(); httpGetAsync('repub.paginas/announcements.php?action=getAnuncios', function (response) { createGrids(JSON.parse(response)); });">
+    <div id="content" name="content">
+        <div>
+            <h1 style="" class="title-big">
+                Meus Anúncios
+            </h1>
+        </div>
+        <div align="center">
+            <div id="grid-container" name="grid-container" style="display:inline-block;">
             </div>
         </div>
+    </div>
 </body>
 </html>
