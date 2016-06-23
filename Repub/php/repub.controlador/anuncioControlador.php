@@ -36,6 +36,30 @@ class AnuncioControlador {
                 $anuncio->imagens[] = $imagem;
             }
         }
+        
+        $quartoControlador = new QuartoControlador();
+
+        $sql = 'SELECT id FROM quartos WHERE anuncioID = :param1';
+        $params = array($ID);
+
+        foreach ($this->bd->executeQuery($sql, $params) as $result) {
+            $quarto = $quartoControlador->get($result->id);
+            if ($quarto != null) {
+                $anuncio->quartos[] = $quarto;
+            }
+        }
+        
+        $perguntaControlador = new PerguntaControlador();
+        
+        $sql='SELECT id FROM perguntas WHERE anuncioID=:param1';
+        $params=array($ID);
+        
+        foreach ($this->bd->executeQuery($sql, $params) as $result){
+            $pergunta = $perguntaControlador->get($result->id);
+            if($pergunta!=null){
+                $anuncio->perguntas[]=$pergunta;
+            }
+        }
 
         return $anuncio;
     }

@@ -1,10 +1,12 @@
 <?php
 
+include_once '../repub.modelos/usuario.php';
+
 class CreateAnnouncement {
 
     public $anuncio;
     public $quartos = [];
-    
+
     function criarAnuncio($titulo, $endereco, $nome, $garagem, $descricao, $valorMedioContas, $internet, $bairro, $cidade, $estado) {
         $anuncio = new Anuncio($titulo, $endereco, 1, $nome, $garagem, $descricao, $valorMedioContas, $internet, $bairro, $cidade, $estado);
         $controller = new anuncioControlador();
@@ -18,39 +20,18 @@ class CreateAnnouncement {
         $this->quartos[] = $quartoControlador->create($quarto);
     }
 
-    function salvarImagem($idImagem, $j) {
-        $target_dir = "diretorio/do/caralho"; //adicionar diretorio
-        $target_file = $target_dir . basename($_FILES[$idImagem][$j]["name"]);
-        $uploadOK = 1;
-        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-        // Verifica se o arquvo existe
-        if (file_exists($target_file)) {
-            echo "Arquivo já existente!";
-            $uploadOk = 0;
+    function salvarImagem($Imagem,$anuncioID) {
+        if (!file_exists('../../usercontent/anuncio-'.$anuncioID)) {
+            mkdir('../../usercontent/anuncio-'.$anuncioID, 0777, true);
         }
-        // Verifica o tamanho do arquivo
-        if ($_FILES["fileToUpload"]["size"] > 500000000) {
-            echo "Imagem muito grande! A imagem não deve ter tamanho maior do que 5MB.";
-            $uploadOk = 0;
-        }
-        // Verifica a extensão do arquivo
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            echo "Apenas formatos .jpg, .png e .jpeg são aceitos";
-            $uploadOk = 0;
-        }
-        if ($uploadOk == 0) {
-            echo "Houve um erro ao tentar enviar a imagem!";
-        } else {
-            if (move_uploaded_file($_FILES[$idImagem][$j]["tmp_name"], $target_file)) {
-                $pagina->setImagemQuarto($target_file, $i);
-                echo "A imagem " . basename($_FILES[$idImagem][$j]["name"]) . " foi enviada.";
-            } else {
-                echo "Houve um erro ao tentar enviar a imagem!";
-            }
-        }
+        $myfile = fopen("../../usercontent", "w") or die("Unable to open file!");
+        $txt = "John Doe\n";
+        fwrite($myfile, $txt);
+        $txt = "Jane Doe\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
     }
-    
+
     public function setImagemQuarto($endereco, $indexQuarto) {
         $imagem = new Imagem(null, $endereco);
         $imagemControlador = new ImagemControlador();
@@ -95,4 +76,49 @@ for ($i = 0; $i < count($_REQUEST["telefone"]); $i++) {
     $telefoneControlador->create($telefone);
 }
 
+session_start();
+$pagina = new CreateAnnouncement();
+
+$usuario_id = $_SESSION['usuario']->id;
+$titulo_anuncio = $_REQUEST['titulo'];
+$nome_anuncio = $_REQUEST['nome'];
+$telefone_anuncio[] = $_REQUEST['telefone'][];
+$descricao_anuncio = $_REQUEST['descricao'];
+$endereco_anuncio = $_REQUEST['endereco'];
+$bairro_anuncio = $_REQUEST['bairro'];
+$cidade_anuncio = $_REQUEST['cidade'];
+$estado_anuncio = $_REQUEST['estado'];
+$garagem_anuncio = $_REQUEST['garagem-true'];
+$valorMedioContas_anuncio = $_REQUEST['valorContas'];
+$internet_anuncio = $_REQUEST['internet'];
+$imagens_anuncio[] = $_FILES['anuncio-imagem'][];
+$i = 0;
+
+foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
+
+    $valorQuarto_anuncio[$i] = $valor_quarto;
+    $descricaoQuarto_anuncio[$i] = $_REQUEST['descricao-quarto'][$i];
+    $alugado_anuncio[$i] = $_REQUEST['quarto-alugado-true'][$i];
+    foreach ($_FILES['quarto-' . $i . '-imagem'] as $imagem) {
+        $imagemQuarto_anuncio[$i][] = $imagem;
+    }
+
+    $i++;
+}
+
+$pagina->createAnnouncement();
+
+$imagemControlador = new ImagemControlador();
+foreach ($imagens_anuncio as $img) {
+    salvarImagem($idImagem, $j)
+    $imagem = new Imagem();
+    $imagens[] = $imagemControlador->create($img);
+}
+
+$anuncioControlador
+
+
+
+
+$imagensQuarto = $imagemControlador->create($imagens_anuncio);
 ?>
