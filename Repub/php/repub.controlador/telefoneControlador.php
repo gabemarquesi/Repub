@@ -18,7 +18,7 @@ class TelefoneControlador {
         $telefone = null;
 
         if (count($obj) > 0) {
-            $telefone = new Telefone($obj[0]->id, $obj[0]->anuncioID, $obj[0]->numero);
+            $telefone = new Telefone($obj[0]->id, $obj[0]->numero);
         }
 
         return $telefone;
@@ -34,9 +34,9 @@ class TelefoneControlador {
             throw $ex;
         }
 
-        $sql = "INSERT INTO a14017.telefone (anuncioID, numero)
-                    VALUES (:param1, :param2)";
-        $params = array($telefone->anuncioID, $telefone->numero);
+        $sql = "INSERT INTO a14017.telefone (numero)
+                    VALUES (:param1)";
+        $params = array( $telefone->numero);
         if (!$this->bd->executeNonQuery($sql, $params)) {
             throw new Exception('Ocorreu um erro ao criar o telefone.');
         }
@@ -65,10 +65,9 @@ class TelefoneControlador {
         }
 
         $sql = "UPDATE INTO a14017.telefone 
-                    SET anuncioID =:param1
-                        numero=:param2
-                    WHERE id = :param3";
-        $params = array($telefone->anuncioID, $telefone->numero, $telefone->id);
+                    SET numero=:param1
+                    WHERE id = :param2";
+        $params = array($telefone->numero, $telefone->id);
         if (!$this->bd->executeNonQuery($sql, $params)){
             throw new Exception('Ocorreu um erro ao atualizar o telefone.');
         }

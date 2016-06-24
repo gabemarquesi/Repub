@@ -3,12 +3,10 @@
 class Telefone {
 
     public $id;
-    public $anuncioID;
     public $numero;
 
-    function __construct($id, $anuncioID, $numero) {
+    function __construct($id, $numero) {
         $this->id = $id;
-        $this->anuncioID = $anuncioID;
         $this->numero = $numero;
     }
 

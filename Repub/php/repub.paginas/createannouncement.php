@@ -112,13 +112,6 @@ function anuncioRequest() {
     print_r($anuncio);
     print_r($_SESSION['usuario']);
 
-    try {
-        $anuncio = $anuncioControlador->create($anuncio);
-    } catch (Exception $ex) {
-        logException($ex);
-        echo json_encode('Ocorreu um erro ao criar o seu anúncio.');
-        die();
-    }
 
     for ($i = 0; $i < 5; $i++) {
         if ($imagens_anuncio[$i] == null) {
@@ -135,7 +128,6 @@ function anuncioRequest() {
         $quarto->valor = $valor_quarto;
         $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
         $quarto->alugado = $_REQUEST['quarto-alugado'][$i];
-        $quarto->anuncioID = $anuncio->id;
 
         foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
 
@@ -176,7 +168,6 @@ function anuncioRequest() {
 
     foreach ($_REQUEST['telefone'] as $tel) {
         $telefone = new Telefone();
-        $telefone->anuncioID = $anuncio->id;
         $telefone->numero = $tel;
         try {
             $telefone = $telefoneControlador->create($telefone);
@@ -187,6 +178,26 @@ function anuncioRequest() {
         }
 
         $anuncio->telefone[$i] = $telefone;
+    }
+
+    try {
+        $anuncio = $anuncioControlador->create($anuncio);
+    } catch (Exception $ex) {
+        foreach ($anuncio->telefone as $telefone) {
+            $telefoneControlador->delete($telefone->id);
+        }
+        foreach ($anuncio->quartos as $quarto){
+            foreach ($quarto->imagens as $imagem){
+                $imagemControlador->delete($imagem->id);
+            }
+            $quartoControlador->delete($quarto->id);   
+        }
+        foreach ($anuncio->imagens as $imagem){
+            $imagemControlador->delete($imagem->id);
+        }
+        logException($ex);
+        echo json_encode('Ocorreu um erro ao criar o seu anúncio.');
+        die();
     }
 }
 

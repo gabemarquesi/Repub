@@ -6,14 +6,14 @@ class Pergunta {
     public $data;
     public $pergunta;
     public $resposta;
-    public $anuncioID;
+    public $usuarioID;
 
-    public function __construct($id, $data, $pergunta, $resposta, $anuncioID) {
+    public function __construct($id, $data, $pergunta, $resposta, $usuarioID) {
         $this->id = $id;
         $this->data = $data;
         $this->pergunta = $pergunta;
         $this->resposta = $resposta;
-        $this->anuncioID = $anuncioID;
+        $this->usuarioID = $usuarioID;
     }
     
     public static function validate($pergunta) {

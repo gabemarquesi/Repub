@@ -67,9 +67,9 @@ class QuartoControlador {
         $sql = "UPDATE a14017.quarto SET 
                     valor = :param1,
                     descricao = :param2, 
-                    alugado = :param4 
+                    alugado = :param3 
                  WHERE
-                    id = :param5";
+                    id = :param4";
         $params = array($quarto->valor, $quarto->descricao, $quarto->alugado, $quarto->id);
         if (!$this->bd->executeNonQuery($sql, $params)){
             throw new Exception('Ocorreu um erro ao atualizar o quarto.');
