@@ -20,16 +20,21 @@ class CreateAnnouncement {
         $this->quartos[] = $quartoControlador->create($quarto);
     }
 
-    function salvarImagem($Imagem,$anuncioID) {
-        if (!file_exists('../../usercontent/anuncio-'.$anuncioID)) {
-            mkdir('../../usercontent/anuncio-'.$anuncioID, 0777, true);
+    function criarCaminho($anuncioID) {
+        $endereco = '../../user-content/anuncio-' . $anuncioID;
+        if (!file_exists($endereco)) {
+            mkdir($endereco, 0744, true);
         }
-        $myfile = fopen("../../usercontent", "w") or die("Unable to open file!");
-        $txt = "John Doe\n";
-        fwrite($myfile, $txt);
-        $txt = "Jane Doe\n";
-        fwrite($myfile, $txt);
-        fclose($myfile);
+        return $endereco;
+    }
+
+    function salvarImagem($imagem, $endereco) {
+        $myfile = fopen($endereco, "w") or die("Unable to open file!");
+        if (fwrite($myfile, $imagem) > 0) {
+            fclose($myfile);
+        } else {
+            throw new Exception('Imagem não salva!');
+        }
     }
 
     public function setImagemQuarto($endereco, $indexQuarto) {
@@ -109,15 +114,29 @@ foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
 $pagina->createAnnouncement();
 
 $imagemControlador = new ImagemControlador();
+$imagens = null;
+$endereco = '../../user-content/anuncio-' . $anuncioID;
+
 foreach ($imagens_anuncio as $img) {
-    salvarImagem($idImagem, $j)
+     
+    $imagem = new Imagem(NULL, $endereco);
+    $imagem->id = $imagemControlador->create($imagem);
+    $imagem->endereco.='/anuncio-imagem-'.$imagem->id;
+    $imagem->id = $imagemControlador->update($imagem);
+    $imagens[] = $imagem->id;
+}
+
+$anuncioControlador = new AnuncioControlador();
+$anuncio = new Anuncio(null, $titulo_anuncio, $endereco_anuncio, null, $nome_anuncio, $garagem_anuncio, $descricao_anuncio, $valorMedioContas_anuncio, $internet_anuncio, $bairro_anuncio, $cidade_anuncio, $usuario_id, null, $imagens);
+$anuncio->id=$anuncioControlador->create($anuncio);
+
+$pagina->criarCaminho($endereco);
+
+foreach ($imagens_anuncio as $img) {
+    salvarImagem($idImagem, $j);
     $imagem = new Imagem();
     $imagens[] = $imagemControlador->create($img);
 }
-
-$anuncioControlador
-
-
 
 
 $imagensQuarto = $imagemControlador->create($imagens_anuncio);
