@@ -41,6 +41,7 @@ function anuncioRequest() {
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
+    $anuncio->donoID = $usuario_id;
     $anuncio->titulo = $_REQUEST['titulo'];
     $anuncio->nome = $_REQUEST['nome'];
     $anuncio->descricao = $_REQUEST['descricao'];
@@ -50,7 +51,7 @@ function anuncioRequest() {
     $cidade = $cidadeControlador->get($_REQUEST['cidade']);
     $anuncio->cidade = $cidade;
 
-    $anuncio->garagem = $_REQUEST['garagem-true'];
+    $anuncio->garagem = $_REQUEST['garagem'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
     $imagens_anuncio[] = $_FILES['anuncio-imagem'][];
@@ -83,13 +84,12 @@ function anuncioRequest() {
 
     $anuncio->imagens = $imagens;
     $anuncio->imagemCapa = $imagens[0];
-    Try {
+
+    try {
         $anuncio->id = $anuncioControlador->create($anuncio);
     } catch (Exception $ex) {
-        echo json_encode('Ocorreu um erro ao criar o seu anúncio.')
+        echo json_encode('Ocorreu um erro ao criar o seu anúncio.');
     }
-
-    $i = 0;
 
     for ($i = 0; $i < 5; $i++) {
         if ($imagens_anuncio[$i] == null) {
@@ -105,7 +105,7 @@ function anuncioRequest() {
         $quarto = new Quarto();
         $quarto->valor = $valor_quarto;
         $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
-        $quarto->alugado = $_REQUEST['quarto-alugado-true'][$i];
+        $quarto->alugado = $_REQUEST['quarto-alugado'][$i];
         $quarto->anuncioID = $anuncio->id;
 
         foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
@@ -131,7 +131,7 @@ function anuncioRequest() {
         try {
             $quarto = $quartoControlador->create($quarto);
         } catch (Exception $ex) {
-            echo json_encode('Ocorreu um erro ao criar os quartos deste anúncio!')
+            echo json_encode('Ocorreu um erro ao criar os quartos deste anúncio!');
         }
 
         $anuncio->quartos[$i] = $quarto;
