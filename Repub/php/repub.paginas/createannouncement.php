@@ -12,8 +12,8 @@ class CreateAnnouncement {
 
     function criarCaminho($endereco) {
         echo '1';
- 
-        if (is_dir($endereco)) {
+
+        if (!is_dir($endereco)) {
             echo '3';
             mkdir($endereco, 0777, true);
         }
@@ -22,10 +22,10 @@ class CreateAnnouncement {
     }
 
     function salvarImagem($imagem, $endereco) {
-        
+
         $myfile = fopen($endereco, "wb"); // or die("Unable to open file!");
-        
-        if (fwrite($myfile, $imagem) !== false) {            
+
+        if (fwrite($myfile, $imagem) !== false) {
             fclose($myfile);
         } else {
             logException($ex);
@@ -36,7 +36,6 @@ class CreateAnnouncement {
     }
 
 }
-
 
 session_start();
 
@@ -54,13 +53,13 @@ echo '100000 ';
 
 function anuncioRequest() {
     $pagina = new CreateAnnouncement();
-    
+
     $anuncioControlador = new AnuncioControlador();
     $imagemControlador = new ImagemControlador();
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new TelefoneControlador();
     $cidadeControlador = new CidadeControlador();
-    
+
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -70,26 +69,26 @@ function anuncioRequest() {
     $anuncio->descricao = $_REQUEST['descricao'];
     $anuncio->endereco = $_REQUEST['endereco'];
     $anuncio->bairro = $_REQUEST['bairro'];
-    
+
     $cidade = $cidadeControlador->get($_REQUEST['cidade']);
     $anuncio->cidade = $cidade;
-    
+
     $anuncio->garagem = $_REQUEST['garagem'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
     $imagens_anuncio[] = $_FILES['anuncio-imagem'];
-    
+
     $imagens = null;
- 
-    $hash =\hash('sha256', mt_rand() . $anuncio->titulo . mt_rand());
-    
+
+    $hash = \hash('sha256', mt_rand() . $anuncio->titulo . mt_rand());
+
     $endereco = '../user-content/' . $hash;
-    
+
     $pagina->criarCaminho($endereco);
-    
+
     //Deve salvar a imagem depois para garantir que o anuncio será criado
     for ($i = 0; $i < 5; $i++) {
-        
+
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
@@ -97,7 +96,6 @@ function anuncioRequest() {
 
         try {
             $imagem = $imagemControlador->create($imagem);
-
         } catch (Exception $ex) {
             logException($ex);
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
@@ -120,18 +118,21 @@ function anuncioRequest() {
 
     $anuncio->imagens = $imagens;
     $anuncio->imagemCapa = $imagens[0];
-    
+
     for ($i = 0; $i < 5; $i++) {
-        
+
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
         echo'22';
-        $pagina->salvarImagem($imagens_anuncio[$i], $anuncio->imagens[$i]->endereco);
+        if ($imagens_anuncio['error'][$i] == UPLOAD_ERR_OK) {
+            $tmp_name = $imagens_anuncio['tmp_name'][$i];
+            move_uploaded_file($tmp_name, $anuncio->imagens[$i]->endereco);
+        }
         echo '22a';
         $i++;
     }
-        echo'23';
+    echo'23';
 
     $i = 0;
 
@@ -141,9 +142,12 @@ function anuncioRequest() {
         $quarto->valor = $valor_quarto;
         $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
         $quarto->alugado = $_REQUEST['quarto-alugado'][$i];
-echo'25';
+        echo'25';
         foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
-echo'26';
+            if ($img['error'] != UPLOAD_ERR_OK) {
+                continue;
+            }
+            echo'26';
             $imagem = new Imagem(NULL, $endereco);
             try {
                 $imagem = $imagemControlador->create($imagem);
@@ -164,11 +168,15 @@ echo'26';
             }
             echo'30';
             $imagens[] = $imagem;
+
+            $tmp_name = $img['tmp_name'];
+            move_uploaded_file($tmp_name, $anuncio->imagens[$i]->endereco);
+
             $pagina->salvarImagem($img, $imagem->endereco);
             echo '31';
         }
         $quarto->imagens = $imagens;
-echo '32';
+        echo '32';
         try {
             $quarto = $quartoControlador->create($quarto);
         } catch (Exception $ex) {
@@ -201,20 +209,20 @@ echo '32';
 
         $anuncio->telefone[$i] = $telefone;
     }
-echo '39';
+    echo '39';
     try {
         $anuncio = $anuncioControlador->create($anuncio);
     } catch (Exception $ex) {
         foreach ($anuncio->telefone as $telefone) {
             $telefoneControlador->delete($telefone->id);
         }
-        foreach ($anuncio->quartos as $quarto){
-            foreach ($quarto->imagens as $imagem){
+        foreach ($anuncio->quartos as $quarto) {
+            foreach ($quarto->imagens as $imagem) {
                 $imagemControlador->delete($imagem->id);
             }
-            $quartoControlador->delete($quarto->id);   
+            $quartoControlador->delete($quarto->id);
         }
-        foreach ($anuncio->imagens as $imagem){
+        foreach ($anuncio->imagens as $imagem) {
             $imagemControlador->delete($imagem->id);
         }
         logException($ex);
