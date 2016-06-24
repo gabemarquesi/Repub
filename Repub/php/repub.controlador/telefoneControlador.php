@@ -34,7 +34,7 @@ class TelefoneControlador {
             throw $ex;
         }
 
-        $sql = "INSERT INTO a14017.telefone (numero)
+        $sql = "INSERT INTO a14017.telefones (numero)
                     VALUES (:param1)";
         $params = array( $telefone->numero);
         if (!$this->bd->executeNonQuery($sql, $params)) {
@@ -64,7 +64,7 @@ class TelefoneControlador {
             throw $ex;
         }
 
-        $sql = "UPDATE INTO a14017.telefone 
+        $sql = "UPDATE INTO a14017.telefones 
                     SET numero=:param1
                     WHERE id = :param2";
         $params = array($telefone->numero, $telefone->id);
