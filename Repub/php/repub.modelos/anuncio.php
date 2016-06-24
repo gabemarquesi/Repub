@@ -88,28 +88,28 @@ Class Anuncio {
         }
         
         foreach ($anuncio->telefone as $telefone){
-            $ex = $telefone->validate;
+            $ex = $telefone->validate();
             if($ex!=null){
                 throw  $ex;
             }
         }
         
         foreach ($anuncio->imagens as $imagem) {
-            $ex = $imagem->validate;
+            $ex = $imagem->validate();
             if ($ex != null) {
                 throw $ex;
             }
         }
         
         foreach ($anuncio->quartos as $quarto) {
-            $ex = $quarto->validate;
+            $ex = $quarto->validate();
             if ($ex != null) {
                 throw $ex;
             }
         }
         
         foreach ($anuncio->perguntas as $pergunta) {
-            $ex = $pergunta->validate;
+            $ex = $pergunta->validate();
             if ($ex != null) {
                 throw $ex;
             }
