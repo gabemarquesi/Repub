@@ -12,7 +12,7 @@ Class Anuncio {
     public $valorMedioContas;
     public $internet;
     public $bairro;
-    public $cidadeID;
+    public $cidade;
     public $donoID;
     public $imagemCapa;
     public $imagens;
@@ -31,7 +31,7 @@ Class Anuncio {
         $this->valorMedioContas = $valorMedioContas;
         $this->internet = $internet;
         $this->bairro = $bairro;
-        $this->cidadeID = $cidade;
+        $this->cidade = $cidade;
         $this->donoID = $donoID;
         $this->imagemCapa = $imagemCapa;
         $this->imagens = $imagens;

@@ -1,7 +1,7 @@
 <?php
 
 include_once '../repub.persistencia/bd_repub.php';
-include_once '../repub.controlador/imagemControlador.php';
+include_once 'imagemControlador.php';
 include_once '../repub.modelos/anuncio.php';
 include_once '../repub.modelos/imagem.php';
 include_once '../repub.modelos/quarto.php';
@@ -24,6 +24,9 @@ class AnuncioControlador {
             $anuncio = new Anuncio($obj[0]->id, $obj[0]->titulo, $obj[0]->endereco, $obj[0]->ativo, $obj[0]->nome, $obj[0]->garagem, $obj[0]->descricao, $obj[0]->valorMedioContas, $obj[0]->internet, $obj[0]->bairro, $obj[0]->cidadeID, $obj[0]->donoID);
         }
 
+        $cidadeControlador = new CidadeControlador();
+        $anuncio->cidade = $cidadeControlador->get($obj[0]->cidadeID);
+
         $imagemControlador = new ImagemControlador();
         $anuncio->imagemCapa = $imagemControlador->get($obj[0]->imagemcapa);
 
@@ -36,7 +39,7 @@ class AnuncioControlador {
                 $anuncio->imagens[] = $imagem;
             }
         }
-        
+
         $quartoControlador = new QuartoControlador();
 
         $sql = 'SELECT id FROM quartos WHERE anuncioID = :param1';
@@ -48,16 +51,16 @@ class AnuncioControlador {
                 $anuncio->quartos[] = $quarto;
             }
         }
-        
+
         $perguntaControlador = new PerguntaControlador();
-        
-        $sql='SELECT id FROM perguntas WHERE anuncioID=:param1';
-        $params=array($ID);
-        
-        foreach ($this->bd->executeQuery($sql, $params) as $result){
+
+        $sql = 'SELECT id FROM perguntas WHERE anuncioID=:param1';
+        $params = array($ID);
+
+        foreach ($this->bd->executeQuery($sql, $params) as $result) {
             $pergunta = $perguntaControlador->get($result->id);
-            if($pergunta!=null){
-                $anuncio->perguntas[]=$pergunta;
+            if ($pergunta != null) {
+                $anuncio->perguntas[] = $pergunta;
             }
         }
 
@@ -94,7 +97,7 @@ class AnuncioControlador {
         $params = array($anuncio->titulo, $anuncio->endereco, $anuncio->ativo,
             $anuncio->nome, $anuncio->garagem, $anuncio->descricao,
             $anuncio->valorMedioContas, $anuncio->internet,
-            $anuncio->bairro, $anuncio->cidadeID, $anuncio->donoID, $anuncio->imagemCapa->id);
+            $anuncio->bairro, $anuncio->cidade->id, $anuncio->donoID, $anuncio->imagemCapa->id);
 
         if (!$this->bd->executeNonQuery($sql, $params)) {
             throw new Exception('Ocorreu um erro durante o create.');
@@ -143,7 +146,7 @@ class AnuncioControlador {
 
         $params = array($anuncio->titulo, $anuncio->endereco, $anuncio->ativo, $anuncio->nome,
             $anuncio->garagem, $anuncio->descricao, $anuncio->valorMedioContas, $anuncio->internet,
-            $anuncio->bairro, $anuncio->cidade, $anuncio->donoID, $anuncio->imagemCapa, $anuncio->id);
+            $anuncio->bairro, $anuncio->cidade->id, $anuncio->donoID, $anuncio->imagemCapa, $anuncio->id);
 
         if (!$this->bd->executeNonQuery($sql, $params)) {
             throw new Exception('Ocorreu um erro durante o update.');
