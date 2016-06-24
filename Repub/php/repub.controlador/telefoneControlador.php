@@ -3,7 +3,7 @@
 include_once '../repub.persistencia/bd_repub.php';
 include_once '../repub.modelos/telefone.php';
 
-class telefoneControlador {
+class TelefoneControlador {
 
     public $bd;
 
