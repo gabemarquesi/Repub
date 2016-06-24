@@ -19,12 +19,12 @@ class CidadeControlador {
         $cidade = null;
 
         if (count($obj) > 0) {
-            $cidade = new Cidade($obj[0]->id, $obj[0]->nome);
+            $cidade = new Cidade($obj[0]->id, $obj[0]->nome, null);
         }
-
+        
         $estadoControlador = new EstadoControlador();
         $cidade->estado = $estadoControlador->get($obj[0]->estadoID);
-        
+
         return $cidade;
     }
 
@@ -32,12 +32,12 @@ class CidadeControlador {
         $sql = "SELECT id FROM a14017.cidade WHERE estadoID = :param1";
         $params = array($estadoID);
         $cidades = null;
-        
-        foreach($this->bd->executeQuery($sql, $params) as $obj){
+
+        foreach ($this->bd->executeQuery($sql, $params) as $obj) {
             $cidades[] = $this->get($obj->id);
-        }     
-        
+        }
+
         return $cidades;
     }
-    
+
 }

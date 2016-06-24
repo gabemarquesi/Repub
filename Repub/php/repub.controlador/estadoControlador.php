@@ -20,7 +20,7 @@ class EstadoControlador {
         if (count($obj) > 0) {
             $estado = new Estado($obj[0]->id, $obj[0]->nome, $obj[0]->uf, $obj[0]->paisID);
         }
-
+        
         return $estado;
     }
 

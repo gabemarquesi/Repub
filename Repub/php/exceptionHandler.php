@@ -3,11 +3,14 @@
 set_exception_handler('logException');
 
 function logException($exception) {
-    $myfile = fopen('logs/repub-errors.txt', "a");// or die("Unable to open file!");
+    if (!$myfile = fopen('./logs/repub-errors.txt', "a")) {
+        echo 'Erro ao abrir log de exceção!';
+    }
     $now = new DateTime('now');
-    $text = "$now ---> ERRO: Em ". $exception->getFile() . ", linha " . $exception->getLine() . ": \n" .
+    $text = $now->format('d/m/Y às H:i:s') . "---> ERRO: Em " . $exception->getFile() . ", linha " . $exception->getLine() . ": \n" .
             $exception->getMessage() . ". \n";
-    if (fwrite($myfile, $text) > 0) {
+
+    if (fwrite($myfile, $text) !== false) {
         fclose($myfile);
     }
 }
