@@ -29,85 +29,96 @@ if ($_SESSION['usuario'] == null) {
     die();
 }
 $pagina = new CreateAnnouncement();
-$anuncioControlador = new AnuncioControlador();
-$imagemControlador = new ImagemControlador();
-$quartoControlador = new QuartoControlador();
-$telefoneControlador = new telefoneControlador();
 
-$usuario_id = $_SESSION['usuario']->id;
-$anuncio = new Anuncio();
-$anuncio->titulo = $_REQUEST['titulo'];
-$anuncio->nome = $_REQUEST['nome'];
-$anuncio->descricao = $_REQUEST['descricao'];
-$anuncio->endereco = $_REQUEST['endereco'];
-$anuncio->bairro = $_REQUEST['bairro'];
-$anuncio->cidade = $_REQUEST['cidade'];
-$anuncio->estado = $_REQUEST['estado'];
-$anuncio->garagem = $_REQUEST['garagem-true'];
-$anuncio->valorMedioContas = $_REQUEST['valorContas'];
-$anuncio->internet = $_REQUEST['internet'];
-$imagens_anuncio[] = $_FILES['anuncio-imagem'][];
+function anuncioRequest() {
 
-$imagens = null;
+    $anuncioControlador = new AnuncioControlador();
+    $imagemControlador = new ImagemControlador();
+    $quartoControlador = new QuartoControlador();
+    $telefoneControlador = new telefoneControlador();
 
-$endereco = '../../user-content/anuncio-' . $anuncioID;
+    $usuario_id = $_SESSION['usuario']->id;
+    $anuncio = new Anuncio();
+    $anuncio->titulo = $_REQUEST['titulo'];
+    $anuncio->nome = $_REQUEST['nome'];
+    $anuncio->descricao = $_REQUEST['descricao'];
+    $anuncio->endereco = $_REQUEST['endereco'];
+    $anuncio->bairro = $_REQUEST['bairro'];
+    $anuncio->cidade = $_REQUEST['cidade'];
+    $anuncio->estado = $_REQUEST['estado'];
+    $anuncio->garagem = $_REQUEST['garagem-true'];
+    $anuncio->valorMedioContas = $_REQUEST['valorContas'];
+    $anuncio->internet = $_REQUEST['internet'];
+    $imagens_anuncio[] = $_FILES['anuncio-imagem'][];
 
-$pagina->criarCaminho($endereco);
+    $imagens = null;
 
-foreach ($imagens_anuncio as $img) {
+    $endereco = '../../user-content/anuncio-' . $anuncioID;
 
-    $imagem = new Imagem(NULL, $endereco);
-    $imagem->id = $imagemControlador->create($imagem);
-    $imagem->endereco.='/anuncio-imagem-' . $imagem->id;
-    $imagem->id = $imagemControlador->update($imagem);
-    $imagens[] = $imagem;
-}
+    $pagina->criarCaminho($endereco);
 
-$anuncio->imagens = $imagens;
-$anuncio->id = $anuncioControlador->create($anuncio);
 
-$i = 0;
-
-foreach ($imagens_anuncio as $img) {
-    $pagina->salvarImagem($img, $anuncio->imagens[$i]->endereco);
-    $i++;
-}
-
-$i = 0;
-
-foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
-    $quarto = new Quarto();
-    $quarto->valor = $valor_quarto;
-    $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
-    $quarto->alugado = $_REQUEST['quarto-alugado-true'][$i];
-    $quarto->anuncioID = $anuncio->id;
-
-    foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
-
+    for ($i = 0; $i < 5; $i++) {
+        if ($imagens_anuncio[$i] == null) {
+            continue;
+        }
         $imagem = new Imagem(NULL, $endereco);
-        $imagem->id = $imagemControlador->create($imagem);
-        $imagem->endereco.='/quarto-imagem-' . $imagem->id;
-        $imagem->id = $imagemControlador->update($imagem);
-        $imagens[] = $imagem;
-
-        $pagina->salvarImagem($img, $imagem->endereco);
+        $imagem = $imagemControlador->create($imagem);
+        $imagem->endereco.='/anuncio-imagem-' . $imagem->id;
+        $imagem = $imagemControlador->update($imagem);
+        $imagens[$i] = $imagem;
     }
-    $quarto->imagens = $imagens;
 
-    $quarto->id = $quartoControlador->create($quarto);
+    $anuncio->imagens = $imagens;
+    $anuncio->id = $anuncioControlador->create($anuncio);
 
-    $anuncio->quartos[$i] = $quarto;
-    $i++;
+    $i = 0;
+
+    for ($i = 0; $i < 5; $i++) {
+        if ($imagens_anuncio[$i] == null) {
+            continue;
+        }
+        $pagina->salvarImagem($img, $anuncio->imagens[$i]->endereco);
+        $i++;
+    }
+
+    $i = 0;
+
+    foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
+        $quarto = new Quarto();
+        $quarto->valor = $valor_quarto;
+        $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
+        $quarto->alugado = $_REQUEST['quarto-alugado-true'][$i];
+        $quarto->anuncioID = $anuncio->id;
+
+        foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
+
+            $imagem = new Imagem(NULL, $endereco);
+            $imagem = $imagemControlador->create($imagem);
+            $imagem->endereco.='/quarto-imagem-' . $imagem->id;
+            $imagem = $imagemControlador->update($imagem);
+            $imagens[] = $imagem;
+
+            $pagina->salvarImagem($img, $imagem->endereco);
+        }
+        $quarto->imagens = $imagens;
+
+        $quarto = $quartoControlador->create($quarto);
+
+        $anuncio->quartos[$i] = $quarto;
+        $i++;
+    }
+
+    $i = 0;
+
+    foreach ($_REQUEST['telefone'] as $tel) {
+        $telefone = new Telefone();
+        $telefone->anuncioID = $anuncio->id;
+        $telefone->numero = $tel;
+        $telefone = $telefoneControlador->create($telefone);
+
+        $anuncio->telefone[$i] = $telefone;
+    }
 }
 
-$i=0;
-
-foreach ($_REQUEST['telefone'] as $tel) {
-    $telefone = new Telefone();
-    $telefone->anuncioID = $anuncio->id;
-    $telefone->numero = $tel;
-    $telefone->id = $telefoneControlador->create($telefone);
-    
-    $anuncio->telefone[$i]=$telefone;
-}
 ?>
