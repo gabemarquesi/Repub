@@ -37,7 +37,7 @@ function anuncioRequest() {
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new telefoneControlador();
     $cidadeControlador = new CidadeControlador();
-    
+
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -46,10 +46,10 @@ function anuncioRequest() {
     $anuncio->descricao = $_REQUEST['descricao'];
     $anuncio->endereco = $_REQUEST['endereco'];
     $anuncio->bairro = $_REQUEST['bairro'];
-    
-    $cidade= $cidadeControlador->get($_REQUEST['cidade']);
+
+    $cidade = $cidadeControlador->get($_REQUEST['cidade']);
     $anuncio->cidade = $cidade;
-    
+
     $anuncio->garagem = $_REQUEST['garagem-true'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
@@ -67,15 +67,27 @@ function anuncioRequest() {
             continue;
         }
         $imagem = new Imagem(NULL, $endereco);
-        $imagem = $imagemControlador->create($imagem);
+        try {
+            $imagem = $imagemControlador->create($imagem);
+        } catch (Exception $ex) {
+            echo json_encode('Um erro ocorreu ao criar uma imagem!');
+        }
         $imagem->endereco.='/anuncio-imagem-' . $imagem->id;
-        $imagem = $imagemControlador->update($imagem);
+        try {
+            $imagem = $imagemControlador->update($imagem);
+        } catch (Exception $ex) {
+            echo json_encode('Um erro ocorreu ao criar uma imagem!');
+        }
         $imagens[$i] = $imagem;
     }
 
     $anuncio->imagens = $imagens;
-    $anuncio->imagemCapa=$imagens[0];
-    $anuncio->id = $anuncioControlador->create($anuncio);
+    $anuncio->imagemCapa = $imagens[0];
+    Try {
+        $anuncio->id = $anuncioControlador->create($anuncio);
+    } catch (Exception $ex) {
+        echo json_encode('Ocorreu um erro ao criar o seu anúncio.')
+    }
 
     $i = 0;
 
@@ -99,16 +111,28 @@ function anuncioRequest() {
         foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
 
             $imagem = new Imagem(NULL, $endereco);
-            $imagem = $imagemControlador->create($imagem);
+            try {
+                $imagem = $imagemControlador->create($imagem);
+            } catch (Exception $ex) {
+                echo json_encode('Um erro ocorreu ao criar uma imagem!');
+            }
             $imagem->endereco.='/quarto-imagem-' . $imagem->id;
-            $imagem = $imagemControlador->update($imagem);
+            try {
+                $imagem = $imagemControlador->update($imagem);
+            } catch (Exception $ex) {
+                echo json_encode('Um erro ocorreu ao criar uma imagem!');
+            }
             $imagens[] = $imagem;
 
             $pagina->salvarImagem($img, $imagem->endereco);
         }
         $quarto->imagens = $imagens;
 
-        $quarto = $quartoControlador->create($quarto);
+        try {
+            $quarto = $quartoControlador->create($quarto);
+        } catch (Exception $ex) {
+            echo json_encode('Ocorreu um erro ao criar os quartos deste anúncio!')
+        }
 
         $anuncio->quartos[$i] = $quarto;
         $i++;
@@ -120,7 +144,11 @@ function anuncioRequest() {
         $telefone = new Telefone();
         $telefone->anuncioID = $anuncio->id;
         $telefone->numero = $tel;
-        $telefone = $telefoneControlador->create($telefone);
+        try {
+            $telefone = $telefoneControlador->create($telefone);
+        } catch (Exception $ex) {
+            echo json_encode('Um erro ocorreu ao criar os telefones para este anúncio.');
+        }
 
         $anuncio->telefone[$i] = $telefone;
     }
