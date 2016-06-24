@@ -34,10 +34,10 @@ class ImagemControlador {
             throw $ex;
         }
 
-        $sql = "INSERT INTO a14017.imagens (imagemID, endereco)
-				VALUES (:param1, :param2)";
+        $sql = "INSERT INTO a14017.imagens (endereco)
+				VALUES (:param1)";
 
-        $params = array($imagem->id, $imagem->endereco);
+        $params = array($imagem->endereco);
         if (!$this->bd->executeNonQuery($sql, $params)) {
             throw new Exception('Um erro ocorreu durante a criação.');
         }
@@ -66,7 +66,7 @@ class ImagemControlador {
         }
         
         $sql = "UPDATE a14017.imagens SET endereco = :param1 WHERE id = :param2";
-        $params = array($imagem->imagemID, $imagem->endereco);
+        $params = array($imagem->endereco,$imagem->id);
         if (!$this->bd->executeNonQuery($sql, $params)) {
             throw new Exception('Ocorreu um erro durante o update.');
         }

@@ -2,9 +2,12 @@
 
 set_exception_handler('logException');
 
-function logException($exception) {
-    if (!$myfile = fopen('./logs/repub-errors.txt', "a")) {
-        echo 'Erro ao abrir log de exceção!';
+function logException($exception) {    
+    echo getcwd();
+    if (!($myfile = fopen('../logs/repub-errors.txt', "a"))) {
+        echo 'xana preta';
+        print_r(error_get_last());
+        return false;
     }
     $now = new DateTime('now');
     $text = $now->format('d/m/Y às H:i:s') . "---> ERRO: Em " . $exception->getFile() . ", linha " . $exception->getLine() . ": \n" .
@@ -13,4 +16,6 @@ function logException($exception) {
     if (fwrite($myfile, $text) !== false) {
         fclose($myfile);
     }
+    
+    return true;
 }
