@@ -54,7 +54,7 @@ function anuncioRequest() {
     $cidadeControlador = new CidadeControlador();
     echo '1 ';
 
-    $usuario_id = $_SESSION['PHPSSID']->id;
+    $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
     $anuncio->donoID = $usuario_id;
     $anuncio->titulo = $_REQUEST['titulo'];
