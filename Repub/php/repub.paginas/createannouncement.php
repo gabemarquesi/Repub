@@ -74,6 +74,7 @@ function anuncioRequest() {
     }
 
     $anuncio->imagens = $imagens;
+    $anuncio->imagemCapa=$imagens[0];
     $anuncio->id = $anuncioControlador->create($anuncio);
 
     $i = 0;
