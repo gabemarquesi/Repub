@@ -10,28 +10,36 @@ include_once '../repub.controlador/anuncioControlador.php';
 
 class CreateAnnouncement {
 
-    function criarCaminho($endereco) {
-        echo '1';
- 
-        if (is_dir($endereco)) {
-            echo '3';
-            mkdir($endereco, 0777, true);
+    function criarCaminho($endereco) { 
+        if (!is_dir($endereco)) {     
+            $oldmask = umask(0);
+            if (!mkdir($endereco, 0777)){
+                umask($oldmask);
+                $error = error_get_last();
+                logException(new Exception($error['message']));
+            }
         }
-        echo '4';
+        umask($oldmask);
         return $endereco;
     }
 
     function salvarImagem($imagem, $endereco) {
+        echo '1';
         
-        $myfile = fopen($endereco, "wb"); // or die("Unable to open file!");
-        
+        if (!($myfile = fopen($endereco, "wb"))) {            
+            $error = error_get_last();
+            logException(new Exception($error['message']));
+            throw new Exception('Imagem não salva!');
+        }
+        echo '2';
         if (fwrite($myfile, $imagem) !== false) {            
+            echo '3';
             fclose($myfile);
         } else {
-            logException($ex);
-            echo error_get_last();
+            echo '4';
+            $error = error_get_last();
+            logException(new Exception($error['message']));
             throw new Exception('Imagem não salva!');
-            die();
         }
     }
 
@@ -46,9 +54,6 @@ if ($_SESSION['usuario'] == null) {
     die();
 }
 
-
-
-
 anuncioRequest();
 echo '100000 ';
 
@@ -59,8 +64,7 @@ function anuncioRequest() {
     $imagemControlador = new ImagemControlador();
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new TelefoneControlador();
-    $cidadeControlador = new CidadeControlador();
-    
+    $cidadeControlador = new CidadeControlador();    
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -81,10 +85,8 @@ function anuncioRequest() {
     
     $imagens = null;
  
-    $hash =\hash('sha256', mt_rand() . $anuncio->titulo . mt_rand());
-    
-    $endereco = '../user-content/' . $hash;
-    
+    $hash = \hash('sha256', mt_rand() . $anuncio->titulo . mt_rand());    
+    $endereco = '../user-content/' . $hash;    
     $pagina->criarCaminho($endereco);
     
     //Deve salvar a imagem depois para garantir que o anuncio será criado
@@ -104,7 +106,7 @@ function anuncioRequest() {
             die();
         }
 
-        $imagem->endereco = '/anuncio-imagem-' . $imagem->id;
+        $imagem->endereco .=  '/anuncio-imagem-' . $imagem->id;
 
         try {
             $imagem = $imagemControlador->update($imagem);
