@@ -4,7 +4,12 @@ echo 'a';
 
 include_once '../exceptionHandler.php';
 echo 'b';
-include_once '../repub.modelos/usuario.php';
+include_once '../repub.modelo/usuario.php';
+include_once '../repub.controlador/telefone.php';
+include_once '../repub.controlador/quarto.php';
+include_once '../repub.controlador/imagem.php';
+include_once '../repub.controlador/cidade.php';
+include_once '../repub.controlador/anuncio.php';
 
 class CreateAnnouncement {
 
@@ -66,7 +71,7 @@ function anuncioRequest() {
 
     $imagens = null;
     
-    $endereco = '../../user-content/' . hash('sha128', mt_rand().$anuncio->titulo.  mt_rand() );
+    $endereco = '../../user-content/' . \hash('sha128', mt_rand().$anuncio->titulo.  mt_rand() );
 
     $pagina->criarCaminho($endereco);
 
