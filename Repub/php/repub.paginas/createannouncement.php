@@ -36,6 +36,8 @@ function anuncioRequest() {
     $imagemControlador = new ImagemControlador();
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new telefoneControlador();
+    $cidadeControlador = new CidadeControlador();
+    
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -44,8 +46,10 @@ function anuncioRequest() {
     $anuncio->descricao = $_REQUEST['descricao'];
     $anuncio->endereco = $_REQUEST['endereco'];
     $anuncio->bairro = $_REQUEST['bairro'];
-    $anuncio->cidade = $_REQUEST['cidade'];
-    $anuncio->estado = $_REQUEST['estado'];
+    
+    $cidade= $cidadeControlador->get($_REQUEST['cidade']);
+    $anuncio->cidade = $cidade;
+    
     $anuncio->garagem = $_REQUEST['garagem-true'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
