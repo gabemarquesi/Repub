@@ -116,15 +116,17 @@ function anuncioRequest() {
     }
 
     $i = 0;
+print_r($_FILES);
 
-    foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
+    foreach ($_REQUEST['quarto-valor'] as $quarto_valor) {
         $quarto = new Quarto();
-        $quarto->valor = $valor_quarto;
-        $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
+        $quarto->valor = $quarto_valor;
+        $quarto->descricao = $_REQUEST['quarto-descricao'][$i];
         $quarto->alugado = $_REQUEST['quarto-alugado'][$i];
-
-        foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
-            if ($img['error'] != UPLOAD_ERR_OK) {
+        foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {    
+//            echo json_encode($img);
+//            echo "<br>";
+            if ($img == null || $img['error'] != UPLOAD_ERR_OK) {
                 continue;
             }
             $imagem = new Imagem(NULL, $endereco);
@@ -175,6 +177,7 @@ function anuncioRequest() {
         }
 
         $anuncio->telefone[$i] = $telefone;
+        $i++;
     }
     echo '39';
     try {
