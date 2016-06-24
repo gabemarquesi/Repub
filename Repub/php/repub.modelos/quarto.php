@@ -5,15 +5,14 @@ class Quarto {
     public $id;
     public $valor;
     public $descricao;
-    public $anuncioID;
     public $alugado;
     public $imagens;
 
-    function __construct($id, $valor, $descricao, $anuncioID, $alugado, $imagens) {
+    function __construct($id, $valor, $descricao, $alugado, $imagens) {
         $this->id = $id;
         $this->valor = $valor;
         $this->descricao = $descricao;
-        $this->anuncioID = $anuncioID;
+        
         $this->alugado = $alugado;
         $this->imagens = $imagens;
     }
