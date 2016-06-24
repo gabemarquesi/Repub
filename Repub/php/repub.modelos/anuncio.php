@@ -18,8 +18,9 @@ Class Anuncio {
     public $imagens;
     public $quartos;
     public $perguntas;
+    public $telefone;
 
-    function __construct($ID, $titulo, $endereco, $ativo, $nome, $garagem, $descricao, $valorMedioContas, $internet, $bairro, $cidade, $donoID, $imagemCapa, $imagens, $quartos, $perguntas) {
+    function __construct($ID, $titulo, $endereco, $ativo, $nome, $garagem, $descricao, $valorMedioContas, $internet, $bairro, $cidade, $donoID, $imagemCapa, $imagens, $quartos, $perguntas,$telefone) {
         $this->id = $ID;
         $this->titulo = $titulo;
         $this->endereco = $endereco;
@@ -36,6 +37,8 @@ Class Anuncio {
         $this->imagens = $imagens;
         $this->quartos = $quartos;
         $this->perguntas=$perguntas;
+                $this->telefone=$telefone;
+
     }
 
     public static function validate($anuncio) {
@@ -82,6 +85,13 @@ Class Anuncio {
 
         if (count($anuncio->quartos) == 0) {
             return new Exception('O anúncio precisa ter pelo menos um quarto!');
+        }
+        
+        foreach ($anuncio->telefone as $telefone){
+            $ex = $telefone->validate;
+            if($ex!=null){
+                throw  $ex;
+            }
         }
         
         foreach ($anuncio->imagens as $imagem) {
