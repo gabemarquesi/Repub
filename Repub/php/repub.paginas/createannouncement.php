@@ -11,19 +11,25 @@ include_once '../repub.controlador/anuncioControlador.php';
 class CreateAnnouncement {
 
     function criarCaminho($endereco) {
-        $endereco = '../user-content/' . $endereco;
-        if (!file_exists($endereco)) {
+        echo '1';
+ 
+        if (is_dir($endereco)) {
+            echo '3';
             mkdir($endereco, 0777, true);
         }
+        echo '4';
         return $endereco;
     }
 
     function salvarImagem($imagem, $endereco) {
+        
         $myfile = fopen($endereco, "wb"); // or die("Unable to open file!");
-        if (fwrite($myfile, $imagem) !== false) {
+        
+        if (fwrite($myfile, $imagem) !== false) {            
             fclose($myfile);
         } else {
             logException($ex);
+            echo error_get_last();
             throw new Exception('Imagem não salva!');
             die();
         }
@@ -31,15 +37,15 @@ class CreateAnnouncement {
 
 }
 
-echo '1 ';
+
 session_start();
-echo '2 ';
+
 if ($_SESSION['usuario'] == null) {
     echo 'x ';
     session_abort();
     die();
 }
-echo '3 ';
+
 
 
 
@@ -48,13 +54,13 @@ echo '100000 ';
 
 function anuncioRequest() {
     $pagina = new CreateAnnouncement();
-    echo '4 ';
+    
     $anuncioControlador = new AnuncioControlador();
     $imagemControlador = new ImagemControlador();
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new TelefoneControlador();
     $cidadeControlador = new CidadeControlador();
-    echo '5 ';
+    
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -64,41 +70,41 @@ function anuncioRequest() {
     $anuncio->descricao = $_REQUEST['descricao'];
     $anuncio->endereco = $_REQUEST['endereco'];
     $anuncio->bairro = $_REQUEST['bairro'];
-    echo '6 ';
+    
     $cidade = $cidadeControlador->get($_REQUEST['cidade']);
     $anuncio->cidade = $cidade;
-    echo '8 ';
+    
     $anuncio->garagem = $_REQUEST['garagem'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
     $imagens_anuncio[] = $_FILES['anuncio-imagem'];
-    echo '9 ';
+    
     $imagens = null;
-    echo '10 ';
-    $endereco = '../../user-content/' . \hash('sha128', mt_rand() . $anuncio->titulo . mt_rand());
-    echo '11 ';
+ 
+    $hash =\hash('sha256', mt_rand() . $anuncio->titulo . mt_rand());
+    
+    $endereco = '../user-content/' . $hash;
+    
     $pagina->criarCaminho($endereco);
-    echo '12 ';
+    
     //Deve salvar a imagem depois para garantir que o anuncio será criado
     for ($i = 0; $i < 5; $i++) {
-        echo '13 ';
+        
         if ($imagens_anuncio[$i] == null) {
-            echo '14a';
             continue;
         }
         $imagem = new Imagem(NULL, $endereco);
-        echo '14b';
+
         try {
             $imagem = $imagemControlador->create($imagem);
-            echo '14 ';
+
         } catch (Exception $ex) {
             logException($ex);
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
-        echo'15';
+
         $imagem->endereco = '/anuncio-imagem-' . $imagem->id;
-                echo'16';
 
         try {
             $imagem = $imagemControlador->update($imagem);
@@ -107,22 +113,16 @@ function anuncioRequest() {
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
-                echo'18';
 
         $imagens[$i] = $imagem;
     }
-        echo'19';
+
 
     $anuncio->imagens = $imagens;
     $anuncio->imagemCapa = $imagens[0];
-
-    echo json_encode($anuncio);
-    echo '<br><br>';
-    print_r($_SESSION['usuario']);
-
-echo'20';
+    
     for ($i = 0; $i < 5; $i++) {
-        echo'21';
+        
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
