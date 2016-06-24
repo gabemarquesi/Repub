@@ -81,13 +81,16 @@ function anuncioRequest() {
     for ($i = 0; $i < 5; $i++) {
         echo '13 ';
         if ($imagens_anuncio[$i] == null) {
+            echo '14a';
             continue;
         }
         $imagem = new Imagem(NULL, $endereco);
+        echo '14b';
         try {
             $imagem = $imagemControlador->create($imagem);
             echo '14 ';
         } catch (Exception $ex) {
+            logException($ex);
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
@@ -96,6 +99,7 @@ function anuncioRequest() {
         try {
             $imagem = $imagemControlador->update($imagem);
         } catch (Exception $ex) {
+            logException($ex);
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
@@ -139,6 +143,7 @@ function anuncioRequest() {
             try {
                 $imagem = $imagemControlador->create($imagem);
             } catch (Exception $ex) {
+                logException($ex);
                 echo json_encode('Um erro ocorreu ao criar uma imagem!');
                 die();
             }
@@ -146,6 +151,7 @@ function anuncioRequest() {
             try {
                 $imagem = $imagemControlador->update($imagem);
             } catch (Exception $ex) {
+                logException($ex);
                 echo json_encode('Um erro ocorreu ao criar uma imagem!');
                 die();
             }
@@ -157,6 +163,7 @@ function anuncioRequest() {
         try {
             $quarto = $quartoControlador->create($quarto);
         } catch (Exception $ex) {
+            logException($ex);
             echo json_encode('Ocorreu um erro ao criar os quartos deste anúncio!');
             die();
         }
@@ -174,6 +181,7 @@ function anuncioRequest() {
         try {
             $telefone = $telefoneControlador->create($telefone);
         } catch (Exception $ex) {
+            logException($ex);
             echo json_encode('Um erro ocorreu ao criar os telefones para este anúncio.');
             die();
         }
