@@ -1,6 +1,9 @@
 <?php
 
+echo 'a';
+
 include_once '../exceptionHandler.php';
+echo 'b';
 include_once '../repub.modelos/usuario.php';
 
 class CreateAnnouncement {
@@ -14,7 +17,7 @@ class CreateAnnouncement {
     }
 
     function salvarImagem($imagem, $endereco) {
-        $myfile = fopen($endereco, "w") or die("Unable to open file!");
+        $myfile = fopen($endereco, "w");// or die("Unable to open file!");
         if (fwrite($myfile, $imagem) > 0) {
             fclose($myfile);
         } else {
@@ -29,6 +32,7 @@ if ($_SESSION['usuario'] == null) {
     session_abort();
     die();
 }
+
 $pagina = new CreateAnnouncement();
 
 function anuncioRequest() {
