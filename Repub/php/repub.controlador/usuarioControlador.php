@@ -18,7 +18,7 @@ class UsuarioControlador {
         $usuario = null;
 
         if (count($obj) > 0) {
-            $usuario = new Usuario($obj[0]->id, $obj[0]->nome, $obj[0]->senha, $obj[0]->email, $obj[0]->cidadeID);
+            $usuario = new Usuario($obj[0]->id, $obj[0]->nome, $obj[0]->senha, $obj[0]->email, $obj[0]->cidade->id);
         }
 
         return $usuario;
@@ -46,10 +46,10 @@ class UsuarioControlador {
             throw $ex;
         }
         
-        $sql = "INSERT INTO a14017.usuarios (nome, senha, email, cidadeID)
+        $sql = "INSERT INTO a14017.usuarios (nome, senha, email, cidade)
                     VALUES (:param1,:param2,:param3,:param4)";
         
-        $params = array($usuario->nome, \hash("sha256", $usuario->senha . 'no-rainbow'), $usuario->email, $usuario->cidadeID);
+        $params = array($usuario->nome, \hash("sha256", $usuario->senha . 'no-rainbow'), $usuario->email, $usuario->cidade->id);
         if (!$this->bd->executeNonQuery($sql, $params)){
             throw new Exception('Ocorreu um erro ao criar o usuário');
         }
@@ -82,7 +82,7 @@ class UsuarioControlador {
                         email=:param3,
                         cidadeID=:param4 
                     WHERE ID = :param5";
-        $params = array($usuario->nome, $usuario->senha, $usuario->email, $usuario->cidadeID, $usuario->id);
+        $params = array($usuario->nome, $usuario->senha, $usuario->email, $usuario->cidade->id, $usuario->id);
         if (!$this->bd->executeNonQuery($sql, $params)){
             throw new Exception('Ocorreu um erro ao atualizar o usuário');
         }

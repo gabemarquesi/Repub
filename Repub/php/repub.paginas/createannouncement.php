@@ -10,20 +10,22 @@ include_once '../repub.controlador/anuncioControlador.php';
 
 class CreateAnnouncement {
 
-    function criarCaminho($anuncioID) {
-        $endereco = '../../user-content/anuncio-' . $anuncioID;
+    function criarCaminho($endereco) {
+        $endereco = '../user-content/' . $endereco;
         if (!file_exists($endereco)) {
-            mkdir($endereco, 0744, true);
+            mkdir($endereco, 0777, true);
         }
         return $endereco;
     }
 
     function salvarImagem($imagem, $endereco) {
-        $myfile = fopen($endereco, "w"); // or die("Unable to open file!");
+        $myfile = fopen($endereco, "wb"); // or die("Unable to open file!");
         if (fwrite($myfile, $imagem) !== false) {
             fclose($myfile);
         } else {
+            logException($ex);
             throw new Exception('Imagem não salva!');
+            die();
         }
     }
 
@@ -96,6 +98,8 @@ function anuncioRequest() {
         }
         echo'15';
         $imagem->endereco = '/anuncio-imagem-' . $imagem->id;
+                echo'16';
+
         try {
             $imagem = $imagemControlador->update($imagem);
         } catch (Exception $ex) {
@@ -103,34 +107,43 @@ function anuncioRequest() {
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
+                echo'18';
+
         $imagens[$i] = $imagem;
     }
+        echo'19';
 
     $anuncio->imagens = $imagens;
     $anuncio->imagemCapa = $imagens[0];
 
-    print_r($anuncio);
+    echo json_encode($anuncio);
+    echo '<br><br>';
     print_r($_SESSION['usuario']);
 
-
+echo'20';
     for ($i = 0; $i < 5; $i++) {
+        echo'21';
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
+        echo'22';
         $pagina->salvarImagem($imagens_anuncio[$i], $anuncio->imagens[$i]->endereco);
+        echo '22a';
         $i++;
     }
+        echo'23';
 
     $i = 0;
 
     foreach ($_REQUEST['valor-quarto'] as $valor_quarto) {
+        echo'24';
         $quarto = new Quarto();
         $quarto->valor = $valor_quarto;
         $quarto->descricao = $_REQUEST['descricao-quarto'][$i];
         $quarto->alugado = $_REQUEST['quarto-alugado'][$i];
-
+echo'25';
         foreach ($_FILES['quarto-' . $i . '-imagem'] as $img) {
-
+echo'26';
             $imagem = new Imagem(NULL, $endereco);
             try {
                 $imagem = $imagemControlador->create($imagem);
@@ -139,7 +152,9 @@ function anuncioRequest() {
                 echo json_encode('Um erro ocorreu ao criar uma imagem!');
                 die();
             }
+            echo'28';
             $imagem->endereco.='/quarto-imagem-' . $imagem->id;
+            echo'29';
             try {
                 $imagem = $imagemControlador->update($imagem);
             } catch (Exception $ex) {
@@ -147,11 +162,13 @@ function anuncioRequest() {
                 echo json_encode('Um erro ocorreu ao criar uma imagem!');
                 die();
             }
+            echo'30';
             $imagens[] = $imagem;
             $pagina->salvarImagem($img, $imagem->endereco);
+            echo '31';
         }
         $quarto->imagens = $imagens;
-
+echo '32';
         try {
             $quarto = $quartoControlador->create($quarto);
         } catch (Exception $ex) {
@@ -159,16 +176,20 @@ function anuncioRequest() {
             echo json_encode('Ocorreu um erro ao criar os quartos deste anúncio!');
             die();
         }
+        echo '33';
 
         $anuncio->quartos[$i] = $quarto;
         $i++;
+        echo '34';
     }
 
     $i = 0;
 
+    echo '35';
     foreach ($_REQUEST['telefone'] as $tel) {
         $telefone = new Telefone();
         $telefone->numero = $tel;
+        echo '36';
         try {
             $telefone = $telefoneControlador->create($telefone);
         } catch (Exception $ex) {
@@ -176,10 +197,11 @@ function anuncioRequest() {
             echo json_encode('Um erro ocorreu ao criar os telefones para este anúncio.');
             die();
         }
+        echo '38';
 
         $anuncio->telefone[$i] = $telefone;
     }
-
+echo '39';
     try {
         $anuncio = $anuncioControlador->create($anuncio);
     } catch (Exception $ex) {

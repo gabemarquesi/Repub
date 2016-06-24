@@ -6,14 +6,14 @@ class Usuario {
     public $nome;
     public $senha;
     public $email;
-    public $cidadeID;
+    public $cidade;
 
-    function __construct($id, $nome, $senha, $email, $cidadeID) {
+    function __construct($id, $nome, $senha, $email, $cidade) {
         $this->id = $id;
         $this->nome = $nome;
         $this->senha = $senha;
         $this->email = $email;
-        $this->cidadeID = $cidadeID;
+        $this->cidade = $cidade;
     }
 
     public static function validate($usuario) {
@@ -30,8 +30,8 @@ class Usuario {
         if ($usuario->email == null || strlen($usuario->email) > 100 ) {
             return new Exception('Overflow de caracteres!');
         }
-        if ($usuario->cidade == null || strlen($usuario->cidade) > 45) {
-            return new Exception('Overflow de caracteres!');
+        if ($usuario->cidade == null) {
+            return new Exception('Cidade não pode ser nulo!');
         }
         
         return null;
