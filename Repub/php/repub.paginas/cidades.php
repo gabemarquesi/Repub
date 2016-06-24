@@ -1,31 +1,24 @@
 <?php
 
-class ListaCidades{
-    public $bd;
-    function __construct(){
-        $this->bd = new BDRepub();
-    }
-    
-    function getEstados(){
-        $sql = "SELECT * FROM a14017.estado";
-        $this->bd->executeQuery($sql);
-    }
-    
-    function getCidades($codigo){
-        $sql = "SELECT * FROM a14017.cidade WHERE estado = :param1";
-        $this->bd->executeQuery($sql, $codigo);
-    }
-}
+include_once '../repub.controlador/estadoControlador.php';
+include_once '../repub.controlador/cidadeControlador.php';
 
-$listaCidades = new ListaCidades();
+session_start();
+if (empty($_SESSION['usuario'])) {
+    session_abort();
+    die();
+}
 
 $acao = $_REQUEST["action"];
 switch ($acao) {
     case "getEstados":
-        $listaCidades->getEstados();
+        $estadoControlador = new EstadoControlador();
+        echo json_encode($estadoControlador->getAll());
         break;
     case "getCidades":
-        $listaCidades->getCidades($codigo);
+        $estadoID = $_REQUEST['estadoID'];
+        $cidadeControlador = new CidadeControlador();
+        echo json_encode($cidadeControlador->getByEstado($estadoID));
         break;
 }
 

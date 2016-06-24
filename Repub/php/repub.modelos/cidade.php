@@ -1,4 +1,7 @@
 <?php
+
+include_once 'estado.php';
+
 class Cidade {
     public $id;
     public $nome;
