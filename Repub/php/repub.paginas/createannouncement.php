@@ -1,9 +1,6 @@
 <?php
 
-echo 'a';
-
 include_once '../exceptionHandler.php';
-echo 'b';
 include_once '../repub.modelo/usuario.php';
 include_once '../repub.controlador/telefone.php';
 include_once '../repub.controlador/quarto.php';
@@ -67,7 +64,7 @@ function anuncioRequest() {
     $anuncio->garagem = $_REQUEST['garagem'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
-    $imagens_anuncio[] = $_FILES['anuncio-imagem'][];
+    $imagens_anuncio[] = $_FILES['anuncio-imagem'];
 
     $imagens = null;
     
