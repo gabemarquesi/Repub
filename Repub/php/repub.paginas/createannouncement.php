@@ -17,7 +17,7 @@ class CreateAnnouncement {
     }
 
     function salvarImagem($imagem, $endereco) {
-        $myfile = fopen($endereco, "w");// or die("Unable to open file!");
+        $myfile = fopen($endereco, "w"); // or die("Unable to open file!");
         if (fwrite($myfile, $imagem) > 0) {
             fclose($myfile);
         } else {
@@ -33,9 +33,12 @@ if ($_SESSION['usuario'] == null) {
     die();
 }
 
-$pagina = new CreateAnnouncement();
+
+
+anuncioRequest();
 
 function anuncioRequest() {
+    $pagina = new CreateAnnouncement();
 
     $anuncioControlador = new AnuncioControlador();
     $imagemControlador = new ImagemControlador();
@@ -62,23 +65,23 @@ function anuncioRequest() {
     $imagens_anuncio[] = $_FILES['anuncio-imagem'][];
 
     $imagens = null;
-
-    $endereco = '../../user-content/anuncio-' . $anuncioID;
+    
+    $endereco = '../../user-content/' . hash('sha128', mt_rand().$anuncio->titulo.  mt_rand() );
 
     $pagina->criarCaminho($endereco);
 
-
+    //Deve salvar a imagem depois para garantir que o anuncio será criado
     for ($i = 0; $i < 5; $i++) {
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
-        $imagem = new Imagem(NULL, $endereco);
+        $imagem = new Imagem(NULL,$endereco);
         try {
             $imagem = $imagemControlador->create($imagem);
         } catch (Exception $ex) {
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
         }
-        $imagem->endereco.='/anuncio-imagem-' . $imagem->id;
+        $imagem->endereco='/anuncio-imagem-' . $imagem->id;
         try {
             $imagem = $imagemControlador->update($imagem);
         } catch (Exception $ex) {
@@ -91,7 +94,7 @@ function anuncioRequest() {
     $anuncio->imagemCapa = $imagens[0];
 
     try {
-        $anuncio->id = $anuncioControlador->create($anuncio);
+        $anuncio = $anuncioControlador->create($anuncio);
     } catch (Exception $ex) {
         echo json_encode('Ocorreu um erro ao criar o seu anúncio.');
     }
@@ -100,7 +103,7 @@ function anuncioRequest() {
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
-        $pagina->salvarImagem($img, $anuncio->imagens[$i]->endereco);
+        $pagina->salvarImagem($imagens_anuncio[$i], $anuncio->imagens[$i]->endereco);
         $i++;
     }
 
@@ -128,7 +131,6 @@ function anuncioRequest() {
                 echo json_encode('Um erro ocorreu ao criar uma imagem!');
             }
             $imagens[] = $imagem;
-
             $pagina->salvarImagem($img, $imagem->endereco);
         }
         $quarto->imagens = $imagens;
