@@ -29,4 +29,3 @@ switch ($acao) {
         break;
 }
 
-?>
