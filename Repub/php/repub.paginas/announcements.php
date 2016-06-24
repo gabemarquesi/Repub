@@ -1,5 +1,6 @@
 <?php
 
+include_once '../exceptionHandler.php';
 include_once '../repub.controlador/anuncioControlador.php';
 include_once '../repub.modelos/usuario.php';
 
