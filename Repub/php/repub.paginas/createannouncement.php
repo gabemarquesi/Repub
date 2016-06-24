@@ -1,7 +1,7 @@
 <?php
 
 include_once '../exceptionHandler.php';
-include_once '../repub.modelo/usuario.php';
+include_once '../repub.modelos/usuario.php';
 include_once '../repub.controlador/telefoneControlador.php';
 include_once '../repub.controlador/quartoControlador.php';
 include_once '../repub.controlador/imagemControlador.php';
@@ -31,28 +31,28 @@ class CreateAnnouncement {
 
 echo '1 ';
 session_start();
-echo '1 ';
+echo '2 ';
 if ($_SESSION['usuario'] == null) {
-    echo '2 ';
+    echo 'x ';
     session_abort();
     die();
 }
-echo '1 ';
+echo '3 ';
 
 
 
 anuncioRequest();
-echo '1 ';
+echo '100000 ';
 
 function anuncioRequest() {
     $pagina = new CreateAnnouncement();
-    echo '1 ';
+    echo '4 ';
     $anuncioControlador = new AnuncioControlador();
     $imagemControlador = new ImagemControlador();
     $quartoControlador = new QuartoControlador();
     $telefoneControlador = new TelefoneControlador();
     $cidadeControlador = new CidadeControlador();
-    echo '1 ';
+    echo '5 ';
 
     $usuario_id = $_SESSION['usuario']->id;
     $anuncio = new Anuncio();
@@ -62,35 +62,36 @@ function anuncioRequest() {
     $anuncio->descricao = $_REQUEST['descricao'];
     $anuncio->endereco = $_REQUEST['endereco'];
     $anuncio->bairro = $_REQUEST['bairro'];
-    echo '1 ';
+    echo '6 ';
     $cidade = $cidadeControlador->get($_REQUEST['cidade']);
     $anuncio->cidade = $cidade;
-    echo '1 ';
+    echo '8 ';
     $anuncio->garagem = $_REQUEST['garagem'];
     $anuncio->valorMedioContas = $_REQUEST['valorContas'];
     $anuncio->internet = $_REQUEST['internet'];
     $imagens_anuncio[] = $_FILES['anuncio-imagem'];
-    echo '1 ';
+    echo '9 ';
     $imagens = null;
-    echo '1 ';
+    echo '10 ';
     $endereco = '../../user-content/' . \hash('sha128', mt_rand() . $anuncio->titulo . mt_rand());
-    echo '1 ';
+    echo '11 ';
     $pagina->criarCaminho($endereco);
-    echo '1 ';
+    echo '12 ';
     //Deve salvar a imagem depois para garantir que o anuncio será criado
     for ($i = 0; $i < 5; $i++) {
-        echo '1 ';
+        echo '13 ';
         if ($imagens_anuncio[$i] == null) {
             continue;
         }
         $imagem = new Imagem(NULL, $endereco);
         try {
             $imagem = $imagemControlador->create($imagem);
-            echo '1 ';
+            echo '14 ';
         } catch (Exception $ex) {
             echo json_encode('Um erro ocorreu ao criar uma imagem!');
             die();
         }
+        echo'15';
         $imagem->endereco = '/anuncio-imagem-' . $imagem->id;
         try {
             $imagem = $imagemControlador->update($imagem);
@@ -105,6 +106,7 @@ function anuncioRequest() {
     $anuncio->imagemCapa = $imagens[0];
 
     print_r($anuncio);
+    print_r($_SESSION['usuario']);
 
     try {
         $anuncio = $anuncioControlador->create($anuncio);
